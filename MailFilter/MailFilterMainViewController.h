@@ -8,6 +8,8 @@
 
 #import "MailFilterFlipsideViewController.h"
 
-@interface MailFilterMainViewController : UIViewController <MailFilterFlipsideViewControllerDelegate>
+@interface MailFilterMainViewController : UIViewController <MailFilterFlipsideViewControllerDelegate, UIAlertViewDelegate>
+
+- (IBAction)showMessage:(id)sender;
 
 @end

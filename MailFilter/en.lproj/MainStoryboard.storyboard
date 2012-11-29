@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2546" systemVersion="12A248" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1876"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
-        <!--class Prefix:identifier Main View Controller-->
+        <!--Mail Filter Main View Controller-->
         <scene sceneID="5">
             <objects>
                 <viewController id="2" customClass="MailFilterMainViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" hasAttributedTitle="NO" lineBreakMode="middleTruncation" id="10">
+                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="10">
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                 <state key="normal">
                                     <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
@@ -25,27 +25,116 @@
                                     <segue destination="6" kind="modal" identifier="showAlternate" modalTransitionStyle="flipHorizontal" id="11"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mmT-vF-CKJ">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="199" id="EMf-4w-A53"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Check Mail">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showMessage:" destination="2" eventType="touchDown" id="qg3-G0-JXp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="10" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="apl-1S-UOC"/>
-                            <constraint firstAttribute="bottom" secondItem="10" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="bcr-if-aDO"/>
+                            <constraint firstItem="mmT-vF-CKJ" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="Ahw-jg-wPb"/>
+                            <constraint firstAttribute="trailing" secondItem="10" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="XfI-yR-eaw"/>
+                            <constraint firstAttribute="bottom" secondItem="mmT-vF-CKJ" secondAttribute="bottom" constant="80" id="lal-Ss-PZI"/>
+                            <constraint firstAttribute="bottom" secondItem="10" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="oz5-Ii-PBH"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="2Yf-uH-oOG"/>
+                    <connections>
+                        <segue destination="arA-F2-Wzf" kind="modal" identifier="showMails" id="32H-XY-XzK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-51" y="182"/>
+            <point key="canvasLocation" x="-2317" y="-1230"/>
         </scene>
-        <!--class Prefix:identifier Flipside View Controller-->
+        <!--Custom Mail Scroll View Controller-->
+        <scene sceneID="IsB-MB-9bW">
+            <objects>
+                <viewController id="arA-F2-Wzf" customClass="CustomMailScrollViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="y8M-1T-FGV">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Always Filter Emails Like This" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="noB-YM-g9r">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Not Important" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4P-VP-hxJ">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="I Will Reply Later" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyw-q7-dvz">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="j4P-VP-hxJ" secondAttribute="bottom" constant="98" id="5wZ-Rr-lBd"/>
+                            <constraint firstAttribute="bottom" secondItem="fyw-q7-dvz" secondAttribute="bottom" constant="63" id="FQW-DM-tkb"/>
+                            <constraint firstItem="noB-YM-g9r" firstAttribute="centerX" secondItem="y8M-1T-FGV" secondAttribute="centerX" type="default" id="IYx-6S-4KB"/>
+                            <constraint firstItem="fyw-q7-dvz" firstAttribute="leading" secondItem="y8M-1T-FGV" secondAttribute="leading" constant="95" id="awD-y3-7AK"/>
+                            <constraint firstItem="j4P-VP-hxJ" firstAttribute="centerX" secondItem="fyw-q7-dvz" secondAttribute="centerX" type="default" id="jCL-gH-6Wq"/>
+                            <constraint firstAttribute="bottom" secondItem="noB-YM-g9r" secondAttribute="bottom" constant="28" id="oZz-Se-ZSV"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yWB-Qp-rfq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2330" y="-327"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="3bq-oa-ec8">
+            <objects>
+                <viewController storyboardIdentifier="View1" id="6Av-iK-KQv" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HQN-1f-kho">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.99215692281723022" green="0.99215692281723022" blue="0.99215692281723022" alpha="1" colorSpace="deviceRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ytD-ZB-Cl3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1967" y="-138"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Ov6-Pg-c7p">
+            <objects>
+                <viewController storyboardIdentifier="View2" id="rKh-hR-fkj" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6s6-qi-Une">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.99215692281723022" green="0.99215692281723022" blue="0.99215692281723022" alpha="1" colorSpace="deviceRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZTG-de-v5c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1595" y="-145"/>
+        </scene>
+        <!--Mail Filter Flipside View Controller-->
         <scene sceneID="9">
             <objects>
                 <viewController id="6" customClass="MailFilterFlipsideViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <navigationBar translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackOpaque" id="12">
+                            <navigationBar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackOpaque" translatesAutoresizingMaskIntoConstraints="NO" id="12">
                                 <items>
                                     <navigationItem title="Title" id="13">
                                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="14">
@@ -56,23 +145,160 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VLw-4d-dia">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="203" id="WJW-kR-3eI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fbA-w5-1T4">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CqG-zu-57d">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ZV-KS-hQ5">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KhV-j1-IHl">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="81" id="sKn-n6-PMh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OvF-St-rd6">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="89" id="c1m-Ub-eE7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Port Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pg2-pk-UFL">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Server Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FcA-xU-PL6">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="12" firstAttribute="leading" secondItem="7" secondAttribute="leading" type="default" id="kyL-VC-rMY"/>
-                            <constraint firstItem="12" firstAttribute="top" secondItem="7" secondAttribute="top" type="default" id="oQ7-QK-1Ab"/>
-                            <constraint firstItem="12" firstAttribute="trailing" secondItem="7" secondAttribute="trailing" type="default" id="yf5-Bx-wHg"/>
+                            <constraint firstItem="VLw-4d-dia" firstAttribute="leading" secondItem="FcA-xU-PL6" secondAttribute="leading" type="default" id="3oX-5Z-pa5"/>
+                            <constraint firstItem="12" firstAttribute="trailing" secondItem="7" secondAttribute="trailing" type="default" id="9W1-3V-I90"/>
+                            <constraint firstItem="KhV-j1-IHl" firstAttribute="top" secondItem="7" secondAttribute="top" constant="238" id="Dlb-38-dk5"/>
+                            <constraint firstItem="VLw-4d-dia" firstAttribute="top" secondItem="7" secondAttribute="top" constant="100" id="G0I-Kb-bgg"/>
+                            <constraint firstItem="fbA-w5-1T4" firstAttribute="top" secondItem="7" secondAttribute="top" constant="209" id="Hot-3g-krq"/>
+                            <constraint firstItem="CqG-zu-57d" firstAttribute="trailing" secondItem="fbA-w5-1T4" secondAttribute="trailing" type="default" id="TJi-ou-lZQ"/>
+                            <constraint firstItem="12" firstAttribute="leading" secondItem="7" secondAttribute="leading" type="default" id="UrW-yt-BFG"/>
+                            <constraint firstItem="1ZV-KS-hQ5" firstAttribute="trailing" secondItem="fbA-w5-1T4" secondAttribute="trailing" type="default" id="VLG-m1-4OT"/>
+                            <constraint firstItem="VLw-4d-dia" firstAttribute="centerX" secondItem="12" secondAttribute="centerX" type="default" id="VPg-Vi-wC6"/>
+                            <constraint firstItem="Pg2-pk-UFL" firstAttribute="leading" secondItem="VLw-4d-dia" secondAttribute="leading" type="default" id="YP1-VG-O3G"/>
+                            <constraint firstItem="CqG-zu-57d" firstAttribute="top" secondItem="7" secondAttribute="top" constant="262" id="ZXL-Fy-RWL"/>
+                            <constraint firstItem="Pg2-pk-UFL" firstAttribute="leading" secondItem="1ZV-KS-hQ5" secondAttribute="leading" type="default" id="dil-Oh-qtZ"/>
+                            <constraint firstItem="Pg2-pk-UFL" firstAttribute="top" secondItem="7" secondAttribute="top" constant="130" id="dwC-Sn-hIw"/>
+                            <constraint firstItem="OvF-St-rd6" firstAttribute="top" secondItem="7" secondAttribute="top" constant="184" id="eca-9U-MpY"/>
+                            <constraint firstItem="12" firstAttribute="top" secondItem="7" secondAttribute="top" type="default" id="kfG-9r-WDz"/>
+                            <constraint firstItem="1ZV-KS-hQ5" firstAttribute="top" secondItem="7" secondAttribute="top" constant="154" id="lqB-5a-RdR"/>
+                            <constraint firstItem="fbA-w5-1T4" firstAttribute="leading" secondItem="KhV-j1-IHl" secondAttribute="leading" type="default" id="mb6-d6-Wra"/>
+                            <constraint firstItem="OvF-St-rd6" firstAttribute="leading" secondItem="1ZV-KS-hQ5" secondAttribute="leading" type="default" id="rwR-Pi-66G"/>
+                            <constraint firstItem="OvF-St-rd6" firstAttribute="leading" secondItem="fbA-w5-1T4" secondAttribute="leading" type="default" id="s3F-BO-Qg2"/>
+                            <constraint firstItem="VLw-4d-dia" firstAttribute="trailing" secondItem="1ZV-KS-hQ5" secondAttribute="trailing" type="default" id="xhe-1B-iu3"/>
+                            <constraint firstItem="FcA-xU-PL6" firstAttribute="top" secondItem="7" secondAttribute="top" constant="77" id="y72-xP-pBI"/>
+                            <constraint firstItem="KhV-j1-IHl" firstAttribute="leading" secondItem="CqG-zu-57d" secondAttribute="leading" type="default" id="ySz-lL-XK6"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="passwordField" destination="CqG-zu-57d" id="KbC-4w-VSy"/>
+                        <outlet property="portField" destination="1ZV-KS-hQ5" id="CvS-xz-N63"/>
+                        <outlet property="serverField" destination="VLw-4d-dia" id="ZJC-Aw-jz0"/>
+                        <outlet property="usernameField" destination="fbA-w5-1T4" id="rlq-sc-ba8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="368" y="182"/>
+            <point key="canvasLocation" x="-1677" y="-1230"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="AWr-hR-Zpk">
+            <objects>
+                <viewController storyboardIdentifier="View3" id="dzp-cZ-Wh8" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KsU-ZS-iYy">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.99215692281723022" green="0.99215692281723022" blue="0.99215692281723022" alpha="1" colorSpace="deviceRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AZl-Nz-VIP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1226" y="-131"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="8Z4-Mw-i9n">
+            <objects>
+                <viewController storyboardIdentifier="View4" id="605-BO-EcW" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="I1h-Vo-uGa">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.99215692280000001" green="0.99215692280000001" blue="0.99215692280000001" alpha="1" colorSpace="deviceRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hrj-xD-M7P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1967" y="549"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="p7n-y8-6Xg">
+            <objects>
+                <viewController storyboardIdentifier="View5" id="0pl-qX-8du" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OjV-zk-BBy">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.99215692280000001" green="0.99215692280000001" blue="0.99215692280000001" alpha="1" colorSpace="deviceRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jc9-b1-chk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1583" y="565"/>
         </scene>
     </scenes>
     <classes>
-        <class className="IBUISceneExitPlaceholder" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IBUISceneExitPlaceholder.h"/>
+        <class className="CustomMailScrollViewController" superclassName="MailScrollViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomMailScrollViewController.h"/>
+        </class>
+        <class className="MailFilterFlipsideViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MailFilterFlipsideViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="portField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="serverField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="usernameField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="MailFilterMainViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MailFilterMainViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="showMessage:"/>
+            </relationships>
+        </class>
+        <class className="MailScrollViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MailScrollViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="changePage:"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

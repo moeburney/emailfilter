@@ -19,7 +19,49 @@
 		452F09261661B6E50004CE2A /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 452F09241661B6E50004CE2A /* MainStoryboard.storyboard */; };
 		452F09291661B6E50004CE2A /* MailFilterMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 452F09281661B6E50004CE2A /* MailFilterMainViewController.m */; };
 		452F092C1661B6E50004CE2A /* MailFilterFlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 452F092B1661B6E50004CE2A /* MailFilterFlipsideViewController.m */; };
+		452F09531661B7680004CE2A /* libmailcore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 452F094C1661B6F80004CE2A /* libmailcore.a */; };
+		452F09551661B7700004CE2A /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 452F09541661B7700004CE2A /* libssl.a */; };
+		452F09571661B7740004CE2A /* libsasl2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 452F09561661B7740004CE2A /* libsasl2.a */; };
+		452F09591661B77E0004CE2A /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 452F09581661B77E0004CE2A /* libcrypto.a */; };
+		452F095B1661B7840004CE2A /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 452F095A1661B7840004CE2A /* libiconv.dylib */; };
+		452F095D1661B7890004CE2A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 452F095C1661B7890004CE2A /* CFNetwork.framework */; };
+		452F09671662A5B60004CE2A /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 452F09661662A5B60004CE2A /* Settings.m */; };
+		452F096A166313D00004CE2A /* MailScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 452F0969166313D00004CE2A /* MailScrollViewController.m */; };
+		452F096D166330600004CE2A /* CustomMailScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 452F096C1663305F0004CE2A /* CustomMailScrollViewController.m */; };
+		452F0970166562C50004CE2A /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 452F096F166562C50004CE2A /* Message.m */; };
+		452F0973166563480004CE2A /* ImapSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 452F0972166563470004CE2A /* ImapSync.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		452F09491661B6F80004CE2A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 452F09321661B6F70004CE2A /* MailCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = MailCore;
+		};
+		452F094B1661B6F80004CE2A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 452F09321661B6F70004CE2A /* MailCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8618B5710DADB5C00C41188;
+			remoteInfo = "MailCore iOS";
+		};
+		452F094D1661B6F80004CE2A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 452F09321661B6F70004CE2A /* MailCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8DFCF4915801A5000C01975;
+			remoteInfo = Tests;
+		};
+		452F095E1661B78F0004CE2A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 452F09321661B6F70004CE2A /* MailCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F8618B5610DADB5C00C41188;
+			remoteInfo = "MailCore iOS";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		452F09081661B6E50004CE2A /* MailFilter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MailFilter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,6 +82,22 @@
 		452F09281661B6E50004CE2A /* MailFilterMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MailFilterMainViewController.m; sourceTree = "<group>"; };
 		452F092A1661B6E50004CE2A /* MailFilterFlipsideViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MailFilterFlipsideViewController.h; sourceTree = "<group>"; };
 		452F092B1661B6E50004CE2A /* MailFilterFlipsideViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MailFilterFlipsideViewController.m; sourceTree = "<group>"; };
+		452F09321661B6F70004CE2A /* MailCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MailCore.xcodeproj; path = ../MailCore/MailCore.xcodeproj; sourceTree = "<group>"; };
+		452F09541661B7700004CE2A /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "../MailCore/iOSPorts/ports/security/openssl/build/Release-iphoneos/libssl.a"; sourceTree = "<group>"; };
+		452F09561661B7740004CE2A /* libsasl2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsasl2.a; path = "../MailCore/iOSPorts/ports/security/cyrus-sasl/build/Release-iphoneos/libsasl2.a"; sourceTree = "<group>"; };
+		452F09581661B77E0004CE2A /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "../MailCore/iOSPorts/ports/security/openssl/build/Release-iphoneos/libcrypto.a"; sourceTree = "<group>"; };
+		452F095A1661B7840004CE2A /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		452F095C1661B7890004CE2A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		452F09651662A59E0004CE2A /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		452F09661662A5B60004CE2A /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
+		452F0968166313D00004CE2A /* MailScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailScrollViewController.h; sourceTree = "<group>"; };
+		452F0969166313D00004CE2A /* MailScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailScrollViewController.m; sourceTree = "<group>"; };
+		452F096B1663305F0004CE2A /* CustomMailScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomMailScrollViewController.h; sourceTree = "<group>"; };
+		452F096C1663305F0004CE2A /* CustomMailScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomMailScrollViewController.m; sourceTree = "<group>"; };
+		452F096E166562C50004CE2A /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		452F096F166562C50004CE2A /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		452F0971166563470004CE2A /* ImapSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImapSync.h; sourceTree = "<group>"; };
+		452F0972166563470004CE2A /* ImapSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImapSync.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +105,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				452F095D1661B7890004CE2A /* CFNetwork.framework in Frameworks */,
+				452F095B1661B7840004CE2A /* libiconv.dylib in Frameworks */,
+				452F09591661B77E0004CE2A /* libcrypto.a in Frameworks */,
+				452F09571661B7740004CE2A /* libsasl2.a in Frameworks */,
+				452F09551661B7700004CE2A /* libssl.a in Frameworks */,
+				452F09531661B7680004CE2A /* libmailcore.a in Frameworks */,
 				452F090D1661B6E50004CE2A /* UIKit.framework in Frameworks */,
 				452F090F1661B6E50004CE2A /* Foundation.framework in Frameworks */,
 				452F09111661B6E50004CE2A /* CoreGraphics.framework in Frameworks */,
@@ -59,6 +123,12 @@
 		452F08FD1661B6E50004CE2A = {
 			isa = PBXGroup;
 			children = (
+				452F095C1661B7890004CE2A /* CFNetwork.framework */,
+				452F095A1661B7840004CE2A /* libiconv.dylib */,
+				452F09581661B77E0004CE2A /* libcrypto.a */,
+				452F09561661B7740004CE2A /* libsasl2.a */,
+				452F09541661B7700004CE2A /* libssl.a */,
+				452F09321661B6F70004CE2A /* MailCore.xcodeproj */,
 				452F09121661B6E50004CE2A /* MailFilter */,
 				452F090B1661B6E50004CE2A /* Frameworks */,
 				452F09091661B6E50004CE2A /* Products */,
@@ -86,6 +156,8 @@
 		452F09121661B6E50004CE2A /* MailFilter */ = {
 			isa = PBXGroup;
 			children = (
+				452F09661662A5B60004CE2A /* Settings.m */,
+				452F09651662A59E0004CE2A /* Settings.h */,
 				452F091B1661B6E50004CE2A /* MailFilterAppDelegate.h */,
 				452F091C1661B6E50004CE2A /* MailFilterAppDelegate.m */,
 				452F09241661B6E50004CE2A /* MainStoryboard.storyboard */,
@@ -94,6 +166,14 @@
 				452F092A1661B6E50004CE2A /* MailFilterFlipsideViewController.h */,
 				452F092B1661B6E50004CE2A /* MailFilterFlipsideViewController.m */,
 				452F09131661B6E50004CE2A /* Supporting Files */,
+				452F0968166313D00004CE2A /* MailScrollViewController.h */,
+				452F0969166313D00004CE2A /* MailScrollViewController.m */,
+				452F096E166562C50004CE2A /* Message.h */,
+				452F096F166562C50004CE2A /* Message.m */,
+				452F096B1663305F0004CE2A /* CustomMailScrollViewController.h */,
+				452F096C1663305F0004CE2A /* CustomMailScrollViewController.m */,
+				452F0971166563470004CE2A /* ImapSync.h */,
+				452F0972166563470004CE2A /* ImapSync.m */,
 			);
 			path = MailFilter;
 			sourceTree = "<group>";
@@ -112,6 +192,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		452F09331661B6F70004CE2A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				452F094A1661B6F80004CE2A /* MailCore.framework */,
+				452F094C1661B6F80004CE2A /* libmailcore.a */,
+				452F094E1661B6F80004CE2A /* Tests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -126,6 +216,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				452F095F1661B78F0004CE2A /* PBXTargetDependency */,
 			);
 			name = MailFilter;
 			productName = MailFilter;
@@ -152,12 +243,42 @@
 			mainGroup = 452F08FD1661B6E50004CE2A;
 			productRefGroup = 452F09091661B6E50004CE2A /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 452F09331661B6F70004CE2A /* Products */;
+					ProjectRef = 452F09321661B6F70004CE2A /* MailCore.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				452F09071661B6E50004CE2A /* MailFilter */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		452F094A1661B6F80004CE2A /* MailCore.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MailCore.framework;
+			remoteRef = 452F09491661B6F80004CE2A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		452F094C1661B6F80004CE2A /* libmailcore.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libmailcore.a;
+			remoteRef = 452F094B1661B6F80004CE2A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		452F094E1661B6F80004CE2A /* Tests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Tests.octest;
+			remoteRef = 452F094D1661B6F80004CE2A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		452F09061661B6E50004CE2A /* Resources */ = {
@@ -183,10 +304,23 @@
 				452F091D1661B6E50004CE2A /* MailFilterAppDelegate.m in Sources */,
 				452F09291661B6E50004CE2A /* MailFilterMainViewController.m in Sources */,
 				452F092C1661B6E50004CE2A /* MailFilterFlipsideViewController.m in Sources */,
+				452F09671662A5B60004CE2A /* Settings.m in Sources */,
+				452F096A166313D00004CE2A /* MailScrollViewController.m in Sources */,
+				452F096D166330600004CE2A /* CustomMailScrollViewController.m in Sources */,
+				452F0970166562C50004CE2A /* Message.m in Sources */,
+				452F0973166563480004CE2A /* ImapSync.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		452F095F1661B78F0004CE2A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "MailCore iOS";
+			targetProxy = 452F095E1661B78F0004CE2A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		452F09151661B6E50004CE2A /* InfoPlist.strings */ = {
@@ -263,6 +397,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MailFilter/MailFilter-Prefix.pch";
+				"HEADER_SEARCH_PATHS[arch=*]" = "\"$(BUILT_PRODUCTS_DIR)/../../include\"";
 				INFOPLIST_FILE = "MailFilter/MailFilter-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -274,6 +409,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MailFilter/MailFilter-Prefix.pch";
+				"HEADER_SEARCH_PATHS[arch=*]" = "\"$(BUILT_PRODUCTS_DIR)/../../include\"";
 				INFOPLIST_FILE = "MailFilter/MailFilter-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -299,6 +435,7 @@
 				452F09311661B6E50004CE2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

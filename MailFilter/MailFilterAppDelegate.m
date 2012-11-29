@@ -7,6 +7,8 @@
 //
 
 #import "MailFilterAppDelegate.h"
+#import <MailCore/MailCore.h>
+
 
 @implementation MailFilterAppDelegate
 

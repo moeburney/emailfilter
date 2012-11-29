@@ -7,6 +7,8 @@
 //
 
 #import "MailFilterFlipsideViewController.h"
+#import "Settings.h"
+
 
 @interface MailFilterFlipsideViewController ()
 
@@ -14,10 +16,18 @@
 
 @implementation MailFilterFlipsideViewController
 
+@synthesize accountNum;
+
 - (void)viewDidLoad
 {
+    self.accountNum = 1;
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    usernameField.text = [Settings username:self.accountNum];
+    passwordField.text = [Settings password:self.accountNum];
+    portField.text = [NSString stringWithFormat:@"%d",[Settings serverPort:self.accountNum]];
+    serverField.text = [Settings server:self.accountNum];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -31,6 +41,16 @@
 - (IBAction)done:(id)sender
 {
     [self.delegate flipsideViewControllerDidFinish:self];
+    
+    NSLog(@"%d", self.accountNum);
+    NSString *username = [usernameField text];
+    NSString *password = [passwordField text];
+    int port = [[portField text] integerValue];
+    NSString *server = [serverField text];
+    [Settings setServer:server accountNum:self.accountNum];
+    [Settings setPassword:password accountNum:self.accountNum];
+    [Settings setServerPort:port accountNum:self.accountNum];
+    [Settings setUsername:username accountNum:self.accountNum];
 }
 
 @end
