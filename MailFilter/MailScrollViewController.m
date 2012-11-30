@@ -275,16 +275,13 @@
     //user is scrolling from page 5 to 6 (page 6 is an empty page w/ activity indicator)
     if (self.scrollView.contentOffset.x == 1600)
     {
-        NSLog(@"page 5 to 6");
         [self updateMessageBatch:@"forward"];        
         [self populateChildViewControllers:self.messages];
-        //now jump the user back to the first page w/the refreshed content
+        
+        //once the new messages are loaded, jump the user back to the first page w/the new content
         //[self gotoFirstPage];
     }
-  
-
-    //NSLog(@"%f", self.scrollView.contentOffset.x);
-    
+      
         
     // Switch the indicator when more than 50% of the previous/next page is visible
   	if (self.pageControl.currentPage != page) {
