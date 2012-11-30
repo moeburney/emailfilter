@@ -48,7 +48,7 @@
     self.pageControl = [[UIPageControl alloc] init];
     self.pageControl.frame = CGRectMake(110,200,100,100);
     [self.pageControl addTarget:self action:@selector(changePage:) forControlEvents:UIControlEventValueChanged];
-   // self.pageControl.backgroundColor = [UIColor redColor];
+    //self.pageControl.backgroundColor = [UIColor grayColor];
     [self.view addSubview:self.pageControl];
     
 }
@@ -272,13 +272,18 @@
     // If user is trying to scroll forward from final page
     // update the messages and repopulate the view controllers and redraw screens
  
-    if (self.scrollView.contentOffset.x == (self.scrollView.contentSize.width - pageWidth) + 1)
+    //user is scrolling from page 5 to 6 (page 6 is an empty page w/ activity indicator)
+    if (self.scrollView.contentOffset.x == 1600)
     {
+        NSLog(@"page 5 to 6");
         [self updateMessageBatch:@"forward"];        
         [self populateChildViewControllers:self.messages];
+        //now jump the user back to the first page w/the refreshed content
         //[self gotoFirstPage];
     }
+  
 
+    //NSLog(@"%f", self.scrollView.contentOffset.x);
     
         
     // Switch the indicator when more than 50% of the previous/next page is visible
@@ -339,7 +344,7 @@
 
 - (void)populateChildViewControllers:(NSMutableArray* )data
 {    
-    for (NSUInteger i = 0; i < [self.childViewControllers count]; i++)
+    for (NSUInteger i = 0; i < [self.childViewControllers count] - 1; i++)
     {
 		[self populateView:i:data];
 	}
@@ -351,7 +356,7 @@
 {
     if (page < 0)
         return;
-    if (page >= [self.childViewControllers count])
+    if (page >= [self.childViewControllers count] - 1)
         return;
     
     UIViewController *controller = [self.childViewControllers objectAtIndex:page];
