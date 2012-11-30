@@ -272,13 +272,13 @@
     // If user is trying to scroll forward from final page
     // update the messages and repopulate the view controllers and redraw screens
  
-    //user is scrolling from page 5 to 6 (page 6 is an empty page w/ activity indicator)
+    //repopulate views if user is scrolling from page 5 to 6 (page 6 is an empty page w/ activity indicator)
     if (self.scrollView.contentOffset.x == 1600)
     {
         [self updateMessageBatch:@"forward"];        
         [self populateChildViewControllers:self.messages];
         
-        //once the new messages are loaded, jump the user back to the first page w/the new content
+        //once the views are repopulated, jump the user back to the first page 
         //[self gotoFirstPage];
     }
       
