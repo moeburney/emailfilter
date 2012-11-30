@@ -16,7 +16,7 @@
 @property (nonatomic, strong) UIPageControl *pageControl;
 @property (nonatomic,retain) NSMutableArray *messageBatches;
 @property (nonatomic,retain) NSMutableArray *messages;
-@property (nonatomic) NSInteger messageBatchIndex;
+@property (nonatomic) NSUInteger messageBatchIndex;
 
 
 

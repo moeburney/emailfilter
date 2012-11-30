@@ -85,7 +85,7 @@
     NSMutableArray *message_array = [[NSMutableArray alloc] init];
     
     
-    for (int i = start; i < finish; i++) {
+    for (int i = 0; i < 5; i++) {
         aMessage = [[Message alloc] init];
         aMessage.messageID = i;
         CTCoreMessage *msg  = [messages objectAtIndex:i];

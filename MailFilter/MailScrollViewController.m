@@ -123,6 +123,7 @@
     //connect to the server and get the first batch of messages (i.e. the first 5 messages)
     ImapSync *dataManager = [ImapSync sharedDataManager];
     self.messages = [dataManager getMessagesFirstBatch];
+    self.messageBatches = [[NSMutableArray alloc] init];
     [self.messageBatches addObject:self.messages];
 
     //now populate the view controllers' views with the first 5 messages
@@ -270,20 +271,16 @@
     
     // If user is trying to scroll forward from final page
     // update the messages and repopulate the view controllers and redraw screens
-    //TODO: This approach won't work because the scrollViewDidScroll method gets called
-    //several times when a user is trying to scroll forward. Need to redo this in
-    //a way that it only gets called once, most liely after a certain % of the next
-    //screen is visible (but when that much of the next screen is visible the app crashes.
-    //need to debug!
-    if (self.scrollView.contentOffset.x > self.scrollView.contentSize.width - pageWidth)
+ 
+    if (self.scrollView.contentOffset.x == (self.scrollView.contentSize.width - pageWidth) + 1)
     {
-        NSLog(@"Refreshing the UI View Controllers and going back to first VC");
-        [self updateMessageBatch:@"forward"];
+        [self updateMessageBatch:@"forward"];        
         [self populateChildViewControllers:self.messages];
         //[self gotoFirstPage];
-
     }
+
     
+        
     // Switch the indicator when more than 50% of the previous/next page is visible
   	if (self.pageControl.currentPage != page) {
 		UIViewController *oldViewController = [self.childViewControllers objectAtIndex:self.pageControl.currentPage];
@@ -305,21 +302,27 @@
 // At the end of scroll animation, reset the boolean used when scrolls originate from the UIPageControl
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     _pageControlUsed = NO;
+
 }
 
 - (void)updateMessageBatch:(NSString *)direction
 {
     if (direction == @"forward")
     {
+        //NSLog(@"%i", self.messageBatchIndex);
+        //NSLog(@"%i", [self.messageBatches count]);
+
+        //NSLog(@"calling updateMessageBatch:forward for new messages");
+
         if (self.messageBatchIndex == ([self.messageBatches count] - 1))
         {
-            //NSLog(@"calling ImapSync for new messages");
+            NSLog(@"calling ImapSync for new messages");
 
             //fetch a new batch of emails and add it to messageBatches
             ImapSync *dataManager = [ImapSync sharedDataManager];
-            //passing sequenceNumbers 5 to 10 right now for testing purposes
-            //need to change this to a new sequence to make it dynamic
-            [self.messageBatches addObject:[dataManager getMessages:5:10]];
+
+            int start = [[self.messages objectAtIndex:[self.messages count] - 1] sequenceNumber] + 1;
+            [self.messageBatches addObject:[dataManager getMessages:start:start + 5]];
         }
         self.messageBatchIndex++;
     }
@@ -356,8 +359,8 @@
 		return;
     }
     
-    [controller.view setNeedsDisplay];
-
+    [[[controller view]subviews]
+     makeObjectsPerformSelector:@selector(removeFromSuperview)];
         
     Message *msg = [data objectAtIndex:page];
     
