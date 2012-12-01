@@ -18,15 +18,16 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
     //add these child view controllers to display the emails in a UIScrollView
+    [self addChildViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ViewTemp1"]];
+    
 	[self addChildViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"View1"]];
 	[self addChildViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"View2"]];
     [self addChildViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"View3"]];
 	[self addChildViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"View4"]];
 	[self addChildViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"View5"]];
     
-    [self addChildViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ViewTemp1"]];
+    [self addChildViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ViewTemp2"]];
 
 
     

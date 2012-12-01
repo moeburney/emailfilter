@@ -130,7 +130,7 @@
     [self populateChildViewControllers:self.messages];
 
     // create "fake" activity indicator
-    UIViewController *finalpagecontroller = [self.childViewControllers objectAtIndex:5];
+    UIViewController *finalpagecontroller = [self.childViewControllers objectAtIndex:6];
     self.activityIndicator = [[UIActivityIndicatorView alloc]
                                                   initWithFrame:CGRectMake(140, 80, 40, 40)];
     [self.activityIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
@@ -282,11 +282,13 @@
     // update the messages and repopulate the view controllers and redraw screens
  
     //repopulate views if user is scrolling from page 5 to 6 (page 6 is an empty page w/ activity indicator)
-    if (self.scrollView.contentOffset.x == 1600)
+    
+    //NSLog(@"%f", self.scrollView.contentOffset.x);
+    if (self.scrollView.contentOffset.x == 1920)
     {
 
         [self.activityIndicator startAnimating];
-        [self performSelector:@selector(performTask) withObject:nil afterDelay:0.0];
+        [self performSelector:@selector(performUpdateMessages) withObject:nil afterDelay:0.0];
         //[self.activityIndicator stopAnimating];
     }
     
@@ -304,12 +306,12 @@
 	}
 }
 
-- (void)performTask {
+- (void)performUpdateMessages {
     @try {
         [self updateMessageBatch:@"forward"];
         [self populateChildViewControllers:self.messages];
         //once the views are repopulated, jump the user back to the first page
-        [self gotoPage:0];
+        [self gotoPage:1];
         
     }
     @catch (NSException * e) {
@@ -361,8 +363,9 @@
 #pragma mark data fetch methods
 
 - (void)populateChildViewControllers:(NSMutableArray* )data
-{    
-    for (NSUInteger i = 0; i < [self.childViewControllers count] - 1; i++)
+{
+    //start at vc #1 because vc #0 is a loader activity dummy screen
+    for (NSUInteger i = 1; i < [self.childViewControllers count] - 1; i++)
     {
 		[self populateView:i:data];
 	}
@@ -372,7 +375,7 @@
 
 - (void)populateView:(int)page:(NSMutableArray *)data
 {
-    if (page < 0)
+    if (page < 1)
         return;
     if (page >= [self.childViewControllers count] - 1)
         return;
@@ -385,7 +388,7 @@
     [[[controller view]subviews]
      makeObjectsPerformSelector:@selector(removeFromSuperview)];
         
-    Message *msg = [data objectAtIndex:page];
+    Message *msg = [data objectAtIndex:page - 1];
     
     //TODO: add message number label
 
