@@ -16,7 +16,9 @@
 @property (nonatomic,retain) NSMutableArray *messageBatches;
 @property (nonatomic,retain) NSMutableArray *messages;
 @property (nonatomic) NSUInteger messageBatchIndex;
-@property (nonatomic) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic) UIActivityIndicatorView *activityIndicator1;
+@property (nonatomic) UIActivityIndicatorView *activityIndicator2;
+
 
 - (IBAction)changePage:(id)sender;
 

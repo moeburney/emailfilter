@@ -129,13 +129,24 @@
     //now populate the view controllers' views with the first 5 messages
     [self populateChildViewControllers:self.messages];
 
-    // create "fake" activity indicator
+    // create "fake" activity indicators for page 0 and page 6
+    
+    UIViewController *startpagecontroller = [self.childViewControllers objectAtIndex:0];
+    self.activityIndicator1 = [[UIActivityIndicatorView alloc]
+                               initWithFrame:CGRectMake(140, 80, 40, 40)];
+    [self.activityIndicator1 setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+    [[startpagecontroller view] addSubview:self.activityIndicator1];
+    [startpagecontroller.view bringSubviewToFront:self.activityIndicator1];
+    
     UIViewController *finalpagecontroller = [self.childViewControllers objectAtIndex:6];
-    self.activityIndicator = [[UIActivityIndicatorView alloc]
+    self.activityIndicator2 = [[UIActivityIndicatorView alloc]
                                                   initWithFrame:CGRectMake(140, 80, 40, 40)];
-    [self.activityIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
-    [[finalpagecontroller view] addSubview:self.activityIndicator];
-    [finalpagecontroller.view bringSubviewToFront:self.activityIndicator];
+    [self.activityIndicator2 setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+    [[finalpagecontroller view] addSubview:self.activityIndicator2];
+    [finalpagecontroller.view bringSubviewToFront:self.activityIndicator2];
+    
+    [self gotoPage:1];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -276,20 +287,28 @@
     CGFloat pageWidth = self.scrollView.frame.size.width;
     int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     
+    // If user is trying to scroll backward from final page
+    // update the messages and repopulate the view controllers and redraw screens
+    
+    //repopulate views if user is scrolling from page 5 to 6 (page 6 is an empty page w/ activity indicator)
 
+
+    if (self.scrollView.contentOffset.x == 0)
+    {
+        [self.activityIndicator1 startAnimating];
+        [self performSelector:@selector(performUpdateMessagesBackward) withObject:nil afterDelay:0.0];
+    }
     
     // If user is trying to scroll forward from final page
     // update the messages and repopulate the view controllers and redraw screens
- 
+    
     //repopulate views if user is scrolling from page 5 to 6 (page 6 is an empty page w/ activity indicator)
     
-    //NSLog(@"%f", self.scrollView.contentOffset.x);
-    if (self.scrollView.contentOffset.x == 1920)
+    else if (self.scrollView.contentOffset.x == 1920)
     {
-
-        [self.activityIndicator startAnimating];
-        [self performSelector:@selector(performUpdateMessages) withObject:nil afterDelay:0.0];
-        //[self.activityIndicator stopAnimating];
+        
+        [self.activityIndicator2 startAnimating];
+        [self performSelector:@selector(performUpdateMessagesForward) withObject:nil afterDelay:0.0];
     }
     
         
@@ -306,7 +325,32 @@
 	}
 }
 
-- (void)performUpdateMessages {
+- (void)performUpdateMessagesBackward{
+    @try {
+        [self updateMessageBatch:@"backward"];
+        [self populateChildViewControllers:self.messages];
+        
+        //once the views are repopulated, jump the user to fifth page
+        //or first page if there are no previous messages
+        //todo: fix this condition so that it fulfills the above comments!
+        if ([self.messages isEqual:[self.messageBatches objectAtIndex:0]])
+        {
+            NSLog(@"equal");
+            //[self gotoPage:1];
+        }
+        else
+        {
+            NSLog(@"not equal");
+            //[self gotoPage:5];
+        }
+        
+    }
+    @catch (NSException * e) {
+        NSLog(@"Exception: %@", e);
+    }
+}
+
+- (void)performUpdateMessagesForward{
     @try {
         [self updateMessageBatch:@"forward"];
         [self populateChildViewControllers:self.messages];
@@ -318,6 +362,7 @@
         NSLog(@"Exception: %@", e);
     }
 }
+
 
 // At the begin of scroll dragging, reset the boolean used when scrolls originate from the UIPageControl
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
@@ -351,9 +396,13 @@
         }
         self.messageBatchIndex++;
     }
-    else
+    else if (direction == @"backward")
     {
-        self.messageBatchIndex--;
+        
+        if (self.messageBatchIndex != 0)
+        {
+            self.messageBatchIndex--;
+        }
     }
         self.messages = [self.messageBatches objectAtIndex:self.messageBatchIndex];
 
@@ -385,7 +434,7 @@
 		return;
     }
     
-    [[[controller view]subviews]
+    [[[controller view] subviews]
      makeObjectsPerformSelector:@selector(removeFromSuperview)];
         
     Message *msg = [data objectAtIndex:page - 1];
