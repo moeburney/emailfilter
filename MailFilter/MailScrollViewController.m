@@ -327,21 +327,22 @@
 
 - (void)performUpdateMessagesBackward{
     @try {
+        BOOL messagesAtZeroBeforeUpdate = [self.messages isEqual:[self.messageBatches objectAtIndex:0]];
         [self updateMessageBatch:@"backward"];
         [self populateChildViewControllers:self.messages];
         
         //once the views are repopulated, jump the user to fifth page
         //or first page if there are no previous messages
         //todo: fix this condition so that it fulfills the above comments!
-        if ([self.messages isEqual:[self.messageBatches objectAtIndex:0]])
+        if (messagesAtZeroBeforeUpdate)
         {
-            NSLog(@"equal");
-            //[self gotoPage:1];
+            //NSLog(@"equal");
+            [self gotoPage:1];
         }
         else
         {
-            NSLog(@"not equal");
-            //[self gotoPage:5];
+            //NSLog(@"not equal");
+            [self gotoPage:5];
         }
         
     }
