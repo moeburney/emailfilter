@@ -195,7 +195,6 @@
         frame.origin.x = frame.size.width * page;
         frame.origin.y = 0;
         controller.view.frame = frame;
-        //NSLog(@"adding subview");
         [self.scrollView addSubview:controller.view];
 
     }
@@ -333,15 +332,12 @@
         
         //once the views are repopulated, jump the user to fifth page
         //or first page if there are no previous messages
-        //todo: fix this condition so that it fulfills the above comments!
         if (messagesAtZeroBeforeUpdate)
         {
-            //NSLog(@"equal");
             [self gotoPage:1];
         }
         else
         {
-            //NSLog(@"not equal");
             [self gotoPage:5];
         }
         
@@ -380,15 +376,8 @@
 {
     if (direction == @"forward")
     {
-        //NSLog(@"%i", self.messageBatchIndex);
-        //NSLog(@"%i", [self.messageBatches count]);
-
-        //NSLog(@"calling updateMessageBatch:forward for new messages");
-
         if (self.messageBatchIndex == ([self.messageBatches count] - 1))
         {
-            NSLog(@"calling ImapSync for new messages");
-
             //fetch a new batch of emails and add it to messageBatches
             ImapSync *dataManager = [ImapSync sharedDataManager];
 
@@ -503,10 +492,6 @@
     
 	UIViewController *oldViewController = [self.childViewControllers objectAtIndex:_page];
 	UIViewController *newViewController = [self.childViewControllers objectAtIndex:self.pageControl.currentPage];
-    
-    //    NSLog(@&quot;Yeah, gotoPage is getting called: %d&quot;, self.pageControl.currentPage);
-    //    NSLog(@&quot;And this is the x value: %f&quot;,frame.origin.x);
-    //    NSLog(@&quot;frame = %@\n&quot;, NSStringFromCGRect(frame));
     
     [oldViewController viewWillDisappear:YES];
 	[newViewController viewWillAppear:YES];

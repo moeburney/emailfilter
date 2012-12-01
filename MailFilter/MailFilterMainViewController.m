@@ -44,7 +44,6 @@
     
     //if ([[segue identifier] isEqualToString:@"showMails"]) {
         //[[segue destinationViewController] setDelegate:self];
-        //NSLog(@"made it to show mails segue");
     //}
 }
 

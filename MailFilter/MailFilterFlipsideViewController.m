@@ -42,7 +42,6 @@
 {
     [self.delegate flipsideViewControllerDidFinish:self];
     
-    NSLog(@"%d", self.accountNum);
     NSString *username = [usernameField text];
     NSString *password = [passwordField text];
     int port = [[portField text] integerValue];
