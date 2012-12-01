@@ -10,17 +10,14 @@
 
 @interface MailScrollViewController : UIViewController <UIScrollViewDelegate>
 
-//todo: make the scrollview programatically instead of IBOutlet to see if it works
-
+//@property(nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIPageControl *pageControl;
 @property (nonatomic,retain) NSMutableArray *messageBatches;
 @property (nonatomic,retain) NSMutableArray *messages;
 @property (nonatomic) NSUInteger messageBatchIndex;
-
-
+@property (nonatomic) UIActivityIndicatorView *activityIndicator;
 
 - (IBAction)changePage:(id)sender;
-
 
 @end

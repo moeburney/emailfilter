@@ -129,6 +129,13 @@
     //now populate the view controllers' views with the first 5 messages
     [self populateChildViewControllers:self.messages];
 
+    // create "fake" activity indicator
+    UIViewController *finalpagecontroller = [self.childViewControllers objectAtIndex:5];
+    self.activityIndicator = [[UIActivityIndicatorView alloc]
+                                                  initWithFrame:CGRectMake(140, 80, 40, 40)];
+    [self.activityIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+    [[finalpagecontroller view] addSubview:self.activityIndicator];
+    [finalpagecontroller.view bringSubviewToFront:self.activityIndicator];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -269,19 +276,20 @@
     CGFloat pageWidth = self.scrollView.frame.size.width;
     int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     
+
+    
     // If user is trying to scroll forward from final page
     // update the messages and repopulate the view controllers and redraw screens
  
     //repopulate views if user is scrolling from page 5 to 6 (page 6 is an empty page w/ activity indicator)
     if (self.scrollView.contentOffset.x == 1600)
     {
-        [self updateMessageBatch:@"forward"];        
-        [self populateChildViewControllers:self.messages];
-        
-        //once the views are repopulated, jump the user back to the first page 
-        //[self gotoFirstPage];
+
+        [self.activityIndicator startAnimating];
+        [self performSelector:@selector(performTask) withObject:nil afterDelay:0.0];
+        //[self.activityIndicator stopAnimating];
     }
-      
+    
         
     // Switch the indicator when more than 50% of the previous/next page is visible
   	if (self.pageControl.currentPage != page) {
@@ -294,6 +302,19 @@
 		[newViewController viewDidAppear:YES];
 		_page = page;
 	}
+}
+
+- (void)performTask {
+    @try {
+        [self updateMessageBatch:@"forward"];
+        [self populateChildViewControllers:self.messages];
+        //once the views are repopulated, jump the user back to the first page
+        [self gotoPage:0];
+        
+    }
+    @catch (NSException * e) {
+        NSLog(@"Exception: %@", e);
+    }
 }
 
 // At the begin of scroll dragging, reset the boolean used when scrolls originate from the UIPageControl
@@ -401,7 +422,46 @@
     
 }
 
+#pragma mark -
+#pragma extra methods
 
-
+- (void) gotoPage: (int) page  {
+    
+    for (NSUInteger i =0; i < [self.childViewControllers count]; i++) {
+		[self loadScrollViewWithPage:i];
+	}
+    
+    self.pageControl.currentPage = page;
+	_page = page;
+	[self.pageControl setNumberOfPages:[self.childViewControllers count]];
+    
+	UIViewController *viewController = [self.childViewControllers objectAtIndex:self.pageControl.currentPage];
+	if (viewController.view.superview != nil) {
+		[viewController viewWillAppear:YES];
+	}
+    
+	self.scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * [self.childViewControllers count], scrollView.frame.size.height);
+    
+    
+	// update the scroll view to the appropriate page
+    CGRect frame = self.scrollView.frame;
+    frame.origin.x = frame.size.width * page;
+    frame.origin.y = 0;
+    
+	UIViewController *oldViewController = [self.childViewControllers objectAtIndex:_page];
+	UIViewController *newViewController = [self.childViewControllers objectAtIndex:self.pageControl.currentPage];
+    
+    //    NSLog(@&quot;Yeah, gotoPage is getting called: %d&quot;, self.pageControl.currentPage);
+    //    NSLog(@&quot;And this is the x value: %f&quot;,frame.origin.x);
+    //    NSLog(@&quot;frame = %@\n&quot;, NSStringFromCGRect(frame));
+    
+    [oldViewController viewWillDisappear:YES];
+	[newViewController viewWillAppear:YES];
+    
+	[self.scrollView scrollRectToVisible:frame animated:YES];
+    
+	// Set the boolean used when scrolls originate from the UIPageControl. See scrollViewDidScroll: above.
+    _pageControlUsed = YES;
+}
 
 @end

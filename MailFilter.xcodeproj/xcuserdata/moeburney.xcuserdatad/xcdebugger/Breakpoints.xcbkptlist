@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MailFilter/MailScrollViewController.m"
-         timestampString = "375953191.898107"
+         timestampString = "376027554.095608"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "366"
-         endingLineNumber = "366"
+         startingLineNumber = "387"
+         endingLineNumber = "387"
          landmarkName = "-populateView::"
          landmarkType = "5">
       </FileBreakpoint>
