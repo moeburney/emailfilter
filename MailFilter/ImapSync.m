@@ -65,6 +65,11 @@
         aMessage.sequenceNumber = [msg sequenceNumber];
         aMessage.body = [msg bodyPreferringPlainText:&isHTML];
         aMessage.subject = [msg subject];
+        aMessage.senderEmailAddress = [[msg sender] email];
+        aMessage.senderName = [[msg sender] name];
+        aMessage.date = [msg senderDate];
+
+
         //NSLog(@"displaying body");
         //NSLog(@"%@", aMessage.body);
         [message_array addObject:aMessage];
@@ -93,8 +98,10 @@
         aMessage.sequenceNumber = [msg sequenceNumber];
         aMessage.body = [msg bodyPreferringPlainText:&isHTML];
         aMessage.subject = [msg subject];
-        //NSLog(@"displaying body");
-        //NSLog(@"%@", aMessage.body);
+        aMessage.senderEmailAddress = [[msg sender] email];
+        aMessage.senderName = [[msg sender] name];
+        aMessage.date = [msg senderDate];
+
         [message_array addObject:aMessage];
     }
     

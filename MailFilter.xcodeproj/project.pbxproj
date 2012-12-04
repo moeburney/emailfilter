@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		452E4562166D925F000C7180 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 452E4561166D925F000C7180 /* Roboto-Medium.ttf */; };
 		452F090D1661B6E50004CE2A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 452F090C1661B6E50004CE2A /* UIKit.framework */; };
 		452F090F1661B6E50004CE2A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 452F090E1661B6E50004CE2A /* Foundation.framework */; };
 		452F09111661B6E50004CE2A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 452F09101661B6E50004CE2A /* CoreGraphics.framework */; };
@@ -64,6 +65,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		452E4561166D925F000C7180 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		452F09081661B6E50004CE2A /* MailFilter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MailFilter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		452F090C1661B6E50004CE2A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		452F090E1661B6E50004CE2A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -156,6 +158,7 @@
 		452F09121661B6E50004CE2A /* MailFilter */ = {
 			isa = PBXGroup;
 			children = (
+				452E4561166D925F000C7180 /* Roboto-Medium.ttf */,
 				452F09661662A5B60004CE2A /* Settings.m */,
 				452F09651662A59E0004CE2A /* Settings.h */,
 				452F091B1661B6E50004CE2A /* MailFilterAppDelegate.h */,
@@ -290,6 +293,7 @@
 				452F09211661B6E50004CE2A /* Default@2x.png in Resources */,
 				452F09231661B6E50004CE2A /* Default-568h@2x.png in Resources */,
 				452F09261661B6E50004CE2A /* MainStoryboard.storyboard in Resources */,
+				452E4562166D925F000C7180 /* Roboto-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

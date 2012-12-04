@@ -33,7 +33,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 200)];
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 150)];
     
     // Init Scroll View Programatically
 	[self.scrollView setPagingEnabled:YES];
@@ -429,37 +429,91 @@
         
     Message *msg = [data objectAtIndex:page - 1];
     
-    //TODO: add message number label
+    UIFont *font = [UIFont fontWithName:@"Roboto-Medium" size:12];
+    
+    //message number label
+    CGRect labelFrameMessageNumber = CGRectMake(20, 20, 280, 60);
+    UILabel *messageNumberLabel = [[UILabel alloc]initWithFrame:labelFrameMessageNumber];
+    messageNumberLabel.textAlignment=NSTextAlignmentCenter;
+    messageNumberLabel.font = font;
+    messageNumberLabel.numberOfLines = 0;
+    [messageNumberLabel setBackgroundColor:[UIColor clearColor]];
+    
+    //todo: messageID and messageCount only accounts for active 5-message sequence
+    //have to fix this to account for total messages
+    int messageIndex = page;
+    int messageCount = [self.messages count];
+    NSString *messageNumber = [[NSString alloc] initWithFormat:@"Messsage %i of %i", messageIndex, messageCount];
 
-    //here we the add subject label
-    CGRect labelFrameSubject = CGRectMake(20, 20, 280, 60);
+    messageNumberLabel.text = messageNumber;
+    messageNumberLabel.font = [messageNumberLabel.font fontWithSize:13];
+    [messageNumberLabel setTextColor:[UIColor colorWithRed:(32/255.f) green:(163/255.f) blue:(199/255.f) alpha:1 ]];
+    [messageNumberLabel setShadowColor:[UIColor darkGrayColor]];
+    [messageNumberLabel setShadowOffset:CGSizeMake(0, -1)];
+    [[controller view] addSubview:messageNumberLabel];
+
+
+    //subject label
+    CGRect labelFrameSubject = CGRectMake(20, 60, 280, 60);
     UILabel *subjectLabel = [[UILabel alloc]initWithFrame:labelFrameSubject];
+    subjectLabel.font = font;
     subjectLabel.numberOfLines = 0;
     [subjectLabel setBackgroundColor:[UIColor clearColor]];
     NSString *subject = msg.subject;
     subjectLabel.text = subject;
-    subjectLabel.font = [subjectLabel.font fontWithSize:18];
+    subjectLabel.font = [subjectLabel.font fontWithSize:22];
     [subjectLabel setTextColor:[UIColor colorWithRed:(52/255.f) green:(49/255.f) blue:(47/255.f) alpha:1 ]];
     [subjectLabel setShadowColor:[UIColor darkGrayColor]];
     [subjectLabel setShadowOffset:CGSizeMake(0, -1)];
     [[controller view] addSubview:subjectLabel];
     
-    //TODO: add sender (sent from) label
+    //sender (sent from) label
+    CGRect labelFrameSender = CGRectMake(20, 90, 280, 60);
+    UILabel *senderLabel = [[UILabel alloc]initWithFrame:labelFrameSender];
+    senderLabel.font = font;
+    senderLabel.numberOfLines = 0;
+    [senderLabel setBackgroundColor:[UIColor clearColor]];
+    NSString *senderName = [@"from " stringByAppendingString:msg.senderName];
+    NSString *senderEmailAddress = [@" / " stringByAppendingString:msg.senderEmailAddress];
+    NSString *senderString = [senderName stringByAppendingString:senderEmailAddress];
+    senderLabel.text = senderString;
+    senderLabel.font = [senderLabel.font fontWithSize:13];
+    [senderLabel setTextColor:[UIColor grayColor]];
+    [senderLabel setShadowColor:[UIColor darkGrayColor]];
+    [senderLabel setShadowOffset:CGSizeMake(0, -1)];
+    [[controller view] addSubview:senderLabel];
 
     
-    //here we add the body label
-    CGRect labelFrameBody = CGRectMake(50, 80, 280, 300);
-    UILabel *myLabel = [[UILabel alloc]initWithFrame:labelFrameBody];
-    myLabel.numberOfLines = 0;
-    [myLabel setBackgroundColor:[UIColor clearColor]];
+    //body label
+    CGRect labelFrameBody = CGRectMake(50, 130, 280, 100);
+    UILabel *bodyLabel = [[UILabel alloc]initWithFrame:labelFrameBody];
+    bodyLabel.font = font;
+    bodyLabel.font = [bodyLabel.font fontWithSize:14];
+    bodyLabel.numberOfLines = 0;
+    [bodyLabel setBackgroundColor:[UIColor clearColor]];
     NSString *body = msg.body;
-    myLabel.text = body;
-    [myLabel setTextColor:[UIColor colorWithRed:(52/255.f) green:(49/255.f) blue:(47/255.f) alpha:1 ]];
-    [myLabel setShadowColor:[UIColor darkGrayColor]];
-    [myLabel setShadowOffset:CGSizeMake(0, -1)];
-    [[controller view] addSubview:myLabel];
+    bodyLabel.text = body;
+    [bodyLabel setTextColor:[UIColor colorWithRed:(52/255.f) green:(49/255.f) blue:(47/255.f) alpha:1 ]];
+    [bodyLabel setShadowColor:[UIColor darkGrayColor]];
+    [bodyLabel setShadowOffset:CGSizeMake(0, -1)];
+    [[controller view] addSubview:bodyLabel];
     
-    //TODO: add date label
+    //date label
+    CGRect labelFrameDate = CGRectMake(20, 220, 280, 60);
+    UILabel *dateLabel = [[UILabel alloc]initWithFrame:labelFrameDate];
+    dateLabel.font = font;
+    dateLabel.font = [dateLabel.font fontWithSize:13];
+    dateLabel.numberOfLines = 0;
+    [dateLabel setBackgroundColor:[UIColor clearColor]];
+    NSDate *date = msg.date;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *stringFromDate = [formatter stringFromDate:date];
+    dateLabel.text = stringFromDate;
+    [dateLabel setTextColor:[UIColor grayColor]];
+    [dateLabel setShadowColor:[UIColor darkGrayColor]];
+    [dateLabel setShadowOffset:CGSizeMake(0, -1)];
+    [[controller view] addSubview:dateLabel];
 
     
 }

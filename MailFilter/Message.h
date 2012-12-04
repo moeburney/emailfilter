@@ -15,6 +15,10 @@
 @property (nonatomic) NSString *body;
 @property (nonatomic) NSString *from;
 @property (nonatomic) NSString *subject;
-@property (nonatomic) NSString *date;
+@property (nonatomic) NSDate *date;
+@property (nonatomic) NSString *senderEmailAddress;
+@property (nonatomic) NSString *senderName;
+
+
 
 @end
