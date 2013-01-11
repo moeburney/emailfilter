@@ -473,9 +473,11 @@
     senderLabel.font = font;
     senderLabel.numberOfLines = 0;
     [senderLabel setBackgroundColor:[UIColor clearColor]];
-    NSString *senderName = [@"from " stringByAppendingString:msg.senderName];
-    NSString *senderEmailAddress = [@" / " stringByAppendingString:msg.senderEmailAddress];
-    NSString *senderString = [senderName stringByAppendingString:senderEmailAddress];
+   // NSString *senderName = [@"from " stringByAppendingString:msg.senderName];
+   // NSString *senderEmailAddress = [@" / " stringByAppendingString:msg.senderEmailAddress];
+    
+    //NSString *senderString = [senderName stringByAppendingString:senderEmailAddress];
+    NSString *senderString = @"sender";
     senderLabel.text = senderString;
     senderLabel.font = [senderLabel.font fontWithSize:13];
     [senderLabel setTextColor:[UIColor grayColor]];
