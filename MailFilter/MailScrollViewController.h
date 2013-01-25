@@ -21,5 +21,7 @@
 
 
 - (IBAction)changePage:(id)sender;
+- (IBAction)replyLater:(id)sender;
+
 
 @end

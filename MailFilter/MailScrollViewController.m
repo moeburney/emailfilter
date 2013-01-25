@@ -264,6 +264,20 @@
     _pageControlUsed = YES;
 }
 
+- (IBAction)replyLater:(id)sender {
+    //this action method should record the UID of the message so that it isn't loaded again
+    //then when fetching the messages in ImapSync, call a function to filter the uids 
+    
+    //int page = ((UIPageControl *)sender).currentPage;
+
+    NSLog(@"reply later");
+    NSLog(@"%i", self.messages.count);
+
+   // NSLog(@"%i", _page);
+
+    
+}
+
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
 	UIViewController *oldViewController = [self.childViewControllers objectAtIndex:_page];
 	UIViewController *newViewController = [self.childViewControllers objectAtIndex:self.pageControl.currentPage];

@@ -103,6 +103,14 @@
 {
     // this is nearly the same method as getMessages, but with start and finish arguments
     // is there a better way to call this (to avoid repeat code)?
+    
+    //TODO: add a way to filter out messages that  belong to "I will reply later" array
+    //using sequence number
+    //but make sure *messages array still pulls out 5 messages after filter is applied
+    //one solution is to loop through sequence numbers, check if sequence number is in array,
+    //then if it is in array, skip to next sequence number, and if not, then add it to *messages;
+    //repeat this process until 5 messages have been added
+
 
     CTCoreFolder *inbox = [self.account folderWithPath:@"INBOX"];
     NSArray *messages = [inbox messagesFromSequenceNumber:start to:finish withFetchAttributes:CTFetchAttrEnvelope];
