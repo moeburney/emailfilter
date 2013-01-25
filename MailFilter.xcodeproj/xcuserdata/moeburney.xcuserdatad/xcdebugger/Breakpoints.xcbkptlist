@@ -164,11 +164,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MailFilter/ImapSync.m"
-         timestampString = "378160792.411439"
+         timestampString = "380835069.732334"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "41"
-         endingLineNumber = "41"
+         startingLineNumber = "34"
+         endingLineNumber = "34"
          landmarkName = "-initWithImapServer"
          landmarkType = "5">
       </FileBreakpoint>
@@ -177,11 +177,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MailFilter/ImapSync.m"
-         timestampString = "378160798.486706"
+         timestampString = "380835069.732334"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "51"
-         endingLineNumber = "51"
+         startingLineNumber = "44"
+         endingLineNumber = "44"
          landmarkName = "-initWithImapServer"
          landmarkType = "5">
       </FileBreakpoint>
@@ -190,11 +190,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MailFilter/ImapSync.m"
-         timestampString = "378160799.233773"
+         timestampString = "380835069.732334"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "52"
-         endingLineNumber = "52"
+         startingLineNumber = "45"
+         endingLineNumber = "45"
          landmarkName = "-initWithImapServer"
          landmarkType = "5">
       </FileBreakpoint>
@@ -203,11 +203,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MailFilter/ImapSync.m"
-         timestampString = "378160799.754442"
+         timestampString = "380835069.732334"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "53"
-         endingLineNumber = "53"
+         startingLineNumber = "46"
+         endingLineNumber = "46"
          landmarkName = "-initWithImapServer"
          landmarkType = "5">
       </FileBreakpoint>
@@ -216,11 +216,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MailFilter/ImapSync.m"
-         timestampString = "378160800.425893"
+         timestampString = "380835069.732334"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "56"
-         endingLineNumber = "56"
+         startingLineNumber = "49"
+         endingLineNumber = "49"
          landmarkName = "-initWithImapServer"
          landmarkType = "5">
       </FileBreakpoint>
@@ -372,7 +372,72 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MailFilter/ImapSync.m"
-         timestampString = "378161754.056283"
+         timestampString = "380835069.732334"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "68"
+         endingLineNumber = "68"
+         landmarkName = "-getMessagesFirstBatch"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "MailFilter/ImapSync.m"
+         timestampString = "380835069.732334"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "70"
+         endingLineNumber = "70"
+         landmarkName = "-getMessagesFirstBatch"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "MailFilter/ImapSync.m"
+         timestampString = "380835069.732334"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "70"
+         endingLineNumber = "70"
+         landmarkName = "-getMessagesFirstBatch"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "MailFilter/ImapSync.m"
+         timestampString = "380835069.732334"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "73"
+         endingLineNumber = "73"
+         landmarkName = "-getMessagesFirstBatch"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "MailFilter/ImapSync.m"
+         timestampString = "380835069.732334"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "74"
+         endingLineNumber = "74"
+         landmarkName = "-getMessagesFirstBatch"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "MailFilter/ImapSync.m"
+         timestampString = "380835069.732334"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "75"
@@ -385,7 +450,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MailFilter/ImapSync.m"
-         timestampString = "380222255.603734"
+         timestampString = "380835069.732334"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "77"
@@ -398,11 +463,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MailFilter/ImapSync.m"
-         timestampString = "378161754.97768"
+         timestampString = "380835069.732334"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "77"
-         endingLineNumber = "77"
+         startingLineNumber = "76"
+         endingLineNumber = "76"
          landmarkName = "-getMessagesFirstBatch"
          landmarkType = "5">
       </FileBreakpoint>
@@ -411,11 +476,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MailFilter/ImapSync.m"
-         timestampString = "380285613.528057"
+         timestampString = "380835069.732334"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "108"
-         endingLineNumber = "108"
+         startingLineNumber = "72"
+         endingLineNumber = "72"
          landmarkName = "-getMessagesFirstBatch"
          landmarkType = "5">
       </FileBreakpoint>
@@ -424,76 +489,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MailFilter/ImapSync.m"
-         timestampString = "380285613.528057"
+         timestampString = "380835069.732334"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "109"
-         endingLineNumber = "109"
-         landmarkName = "-getMessagesFirstBatch"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "MailFilter/ImapSync.m"
-         timestampString = "380285613.528057"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "110"
-         endingLineNumber = "110"
-         landmarkName = "-getMessagesFirstBatch"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "MailFilter/ImapSync.m"
-         timestampString = "380285613.528057"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "112"
-         endingLineNumber = "112"
-         landmarkName = "-getMessagesFirstBatch"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "MailFilter/ImapSync.m"
-         timestampString = "380285613.528057"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "111"
-         endingLineNumber = "111"
-         landmarkName = "-getMessagesFirstBatch"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "MailFilter/ImapSync.m"
-         timestampString = "380285613.528057"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "106"
-         endingLineNumber = "106"
-         landmarkName = "-getMessagesFirstBatch"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "MailFilter/ImapSync.m"
-         timestampString = "380285613.528057"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "129"
-         endingLineNumber = "129"
+         startingLineNumber = "96"
+         endingLineNumber = "96"
          landmarkName = "-getMessagesFirstBatch"
          landmarkType = "5">
       </FileBreakpoint>
@@ -658,11 +658,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MailFilter/ImapSync.m"
-         timestampString = "380285704.903121"
+         timestampString = "380835069.732334"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "131"
-         endingLineNumber = "131"
+         startingLineNumber = "98"
+         endingLineNumber = "98"
          landmarkName = "-getMessagesFirstBatch"
          landmarkType = "5">
       </FileBreakpoint>
@@ -671,11 +671,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MailFilter/ImapSync.m"
-         timestampString = "380285706.325648"
+         timestampString = "380835069.732334"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "130"
-         endingLineNumber = "130"
+         startingLineNumber = "97"
+         endingLineNumber = "97"
          landmarkName = "-getMessagesFirstBatch"
          landmarkType = "5">
       </FileBreakpoint>
@@ -684,11 +684,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MailFilter/ImapSync.m"
-         timestampString = "380285740.65178"
+         timestampString = "380835069.732334"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "132"
-         endingLineNumber = "132"
+         startingLineNumber = "99"
+         endingLineNumber = "99"
          landmarkName = "-getMessagesFirstBatch"
          landmarkType = "5">
       </FileBreakpoint>
