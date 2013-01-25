@@ -75,12 +75,39 @@
     CTCoreFolder *inbox = [self.account folderWithPath:@"INBOX"];
     NSArray *messages = [inbox messagesFromSequenceNumber:1 to:5 withFetchAttributes:CTFetchAttrEnvelope];
     NSMutableArray *message_array = [[NSMutableArray alloc] init];
+
+    NSMutableArray *messages_mutable = [[NSMutableArray alloc] initWithArray:messages];
+
     
+    // Manually remove old messages by looping through them all and checking if not new
+    // todo: find a more efficient way to do this
+    for (int i = 0; i < messages_mutable.count; i++)
+    {
+        if (![[messages_mutable objectAtIndex:i] isNew])
+        {
+            [messages_mutable removeObject:[messages_mutable objectAtIndex:i]];
+            //NSLog(@"found old message");
+        }
+    }
     
-    for (int i = 0; i < 5; i++) {
+    NSLog(@"%i", messages_mutable.count);
+    
+    int msg_batch_total = 0;
+    
+    if (messages_mutable.count > 5)
+    {
+        msg_batch_total = 5;
+    }
+    else
+    {
+        msg_batch_total = messages_mutable.count;
+    }
+    
+    for (int i = 0; i < msg_batch_total; i++) {
+        NSLog(@"looping");
         aMessage = [[Message alloc] init];
         aMessage.messageID = i;
-        CTCoreMessage *msg  = [messages objectAtIndex:i];
+        CTCoreMessage *msg  = [messages_mutable objectAtIndex:i];
         BOOL isHTML;
         aMessage.sequenceNumber = [msg sequenceNumber];
         aMessage.body = [msg bodyPreferringPlainText:&isHTML];
@@ -109,16 +136,41 @@
 {
     // this is nearly the same method as getMessages, but with start and finish arguments
     // is there a better way to call this (to avoid repeat code)?
-    
+
     CTCoreFolder *inbox = [self.account folderWithPath:@"INBOX"];
     NSArray *messages = [inbox messagesFromSequenceNumber:start to:finish withFetchAttributes:CTFetchAttrEnvelope];
     NSMutableArray *message_array = [[NSMutableArray alloc] init];
     
+    NSMutableArray *messages_mutable = [[NSMutableArray alloc] initWithArray:messages];
+
     
-    for (int i = 0; i < 5; i++) {
+    // Manually remove old messages by looping through them all and checking if not new
+    // todo: find a more efficient way to do this
+    for (int i = 0; i < messages_mutable.count; i++)
+    {
+        if (![[messages_mutable objectAtIndex:i] isNew])
+        {
+            [messages_mutable removeObject:[messages_mutable objectAtIndex:i]];
+           // NSLog(@"found old message");
+        }
+    }
+    
+    
+    int msg_batch_total = 0;
+    
+    if (messages_mutable.count > 5)
+    {
+        msg_batch_total = 5;
+    }
+    else
+    {
+        msg_batch_total = messages_mutable.count;
+    }
+    
+    for (int i = 0; i < msg_batch_total; i++) {
         aMessage = [[Message alloc] init];
         aMessage.messageID = i;
-        CTCoreMessage *msg  = [messages objectAtIndex:i];
+        CTCoreMessage *msg  = [messages_mutable objectAtIndex:i];
         BOOL isHTML;
         aMessage.sequenceNumber = [msg sequenceNumber];
         aMessage.body = [msg bodyPreferringPlainText:&isHTML];

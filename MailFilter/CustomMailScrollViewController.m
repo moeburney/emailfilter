@@ -28,10 +28,25 @@
 	[self addChildViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"View5"]];
     
     [self addChildViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ViewTemp2"]];
-
-
     
 }
+/*
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"showFilterPage"]) {
+        [[segue destinationViewController] setDelegate:self];
+    }
+    
+}
+ */
+/*
+- (IBAction)showFilterPage:(id)sender;
+{
+   // [self performSegueWithIdentifier:@"showFilterPage" sender:Nil];
+    NSLog(@"fix delegate here");
+    
+}
+ */
 
 - (void)didReceiveMemoryWarning
 {
