@@ -12,6 +12,7 @@
 
 @property (nonatomic) NSInteger messageID;
 @property (nonatomic) NSUInteger sequenceNumber;
+@property (nonatomic) NSUInteger uid;
 @property (nonatomic) NSString *body;
 @property (nonatomic) NSString *from;
 @property (nonatomic) NSString *subject;

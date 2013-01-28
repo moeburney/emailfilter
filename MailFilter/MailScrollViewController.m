@@ -267,14 +267,24 @@
 - (IBAction)markEmailReplyLater:(id)sender {
     //this method should move the current message on display to "Reply Later" folder
     //If no such folder exists, create it
-    //todo: first step is to get the uid of the current message in order to move it
     
 
+    int page = self.pageControl.currentPage;
+    
     NSLog(@"reply later");
     NSLog(@"%i", self.messages.count);
 
-   // NSLog(@"%i", _page);
-
+    NSLog(@"%i", [[self.messages objectAtIndex:page] uid]);
+    
+    //get the singleton dataManager object
+    ImapSync *dataManager = [ImapSync sharedDataManager];
+    
+    //get inbox folder object
+    CTCoreFolder *inbox = [dataManager getInbox];
+    
+    //move the UID
+    //todo: examine why page - 1 is getting the right message, instead of just uid
+    [inbox moveMessageWithUID:[[self.messages objectAtIndex:page - 1] uid] toPath:@"Reply Later"];
     
 }
 
@@ -282,6 +292,7 @@
 - (IBAction)markEmailNotImportant:(id)sender {
     
     NSLog(@"not important");
+
     
     
 }

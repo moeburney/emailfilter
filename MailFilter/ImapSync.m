@@ -61,6 +61,13 @@
 	return dataManager;
 }
 
+-(CTCoreFolder *)getInbox
+{
+    CTCoreFolder *inbox = [self.account folderWithPath:@"INBOX"];
+    return inbox;
+
+}
+
 -(NSMutableArray *)getMessagesFirstBatch
 {
     // Returns an array of 5 Email Messages
@@ -85,7 +92,7 @@
   
 
 
-        
+        aMessage.uid = [msg uid];
         aMessage.date = [msg senderDate];
 
 
@@ -127,7 +134,10 @@
         aMessage.senderEmailAddress = [[msg sender] email];
         aMessage.senderName = [[msg sender] name];
         aMessage.date = [msg senderDate];
+        
+        aMessage.uid = [msg uid];
 
+        
         [message_array addObject:aMessage];
     }
     
