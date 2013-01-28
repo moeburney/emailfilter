@@ -24,6 +24,7 @@
 
 +(ImapSync *) sharedDataManager;
 -(ImapSync *) initWithImapServer;
+-(CTCoreFolder *)createFolder:(NSString *)path;
 -(CTCoreFolder *)getInbox;
 -(NSMutableArray *)getMessagesFirstBatch;
 -(NSMutableArray *)getMessages:(NSUInteger)start:(NSUInteger)finish;

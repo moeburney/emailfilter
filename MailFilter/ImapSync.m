@@ -61,6 +61,14 @@
 	return dataManager;
 }
 
+-(CTCoreFolder *)createFolder:(NSString *)path
+{
+    CTCoreFolder *newFolder = [self.account folderWithPath:path];
+    [newFolder create];
+    return newFolder;
+}
+
+
 -(CTCoreFolder *)getInbox
 {
     CTCoreFolder *inbox = [self.account folderWithPath:@"INBOX"];

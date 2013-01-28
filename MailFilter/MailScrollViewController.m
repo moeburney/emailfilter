@@ -282,6 +282,8 @@
     //get inbox folder object
     CTCoreFolder *inbox = [dataManager getInbox];
     
+    //TODO: create the "Reply Later" folder if it does not exist, using the dataManager object
+    
     //move the UID
     //todo: examine why page - 1 is getting the right message, instead of just uid
     [inbox moveMessageWithUID:[[self.messages objectAtIndex:page - 1] uid] toPath:@"Reply Later"];
