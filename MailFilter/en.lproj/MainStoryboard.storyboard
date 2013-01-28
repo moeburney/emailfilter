@@ -239,6 +239,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="markEmailNotImportant:" destination="arA-F2-Wzf" eventType="touchUpInside" id="BfK-LB-Ny5"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KFU-qR-CDs">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -250,7 +253,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="replyLater:" destination="arA-F2-Wzf" eventType="touchUpInside" id="fZv-VP-0AC"/>
+                                    <action selector="markEmailReplyLater:" destination="arA-F2-Wzf" eventType="touchUpInside" id="k2y-zW-epT"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l98-Hb-EXY">
@@ -483,37 +486,6 @@
             <point key="canvasLocation" x="-2404" y="559"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="CustomMailScrollViewController" superclassName="MailScrollViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomMailScrollViewController.h"/>
-        </class>
-        <class className="MailFilterFlipsideViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MailFilterFlipsideViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="portField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="serverField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="usernameField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="MailFilterMainViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MailFilterMainViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="showMessage:"/>
-            </relationships>
-        </class>
-        <class className="MailScrollViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MailScrollViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="changePage:"/>
-                <relationship kind="action" name="replyLater:"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

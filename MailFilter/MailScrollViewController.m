@@ -264,11 +264,11 @@
     _pageControlUsed = YES;
 }
 
-- (IBAction)replyLater:(id)sender {
-    //this action method should record the UID of the message so that it isn't loaded again
-    //then when fetching the messages in ImapSync, call a function to filter the uids 
+- (IBAction)markEmailReplyLater:(id)sender {
+    //this method should move the current message on display to "Reply Later" folder
+    //If no such folder exists, create it
+    //todo: first step is to get the uid of the current message in order to move it
     
-    //int page = ((UIPageControl *)sender).currentPage;
 
     NSLog(@"reply later");
     NSLog(@"%i", self.messages.count);
@@ -277,6 +277,15 @@
 
     
 }
+
+
+- (IBAction)markEmailNotImportant:(id)sender {
+    
+    NSLog(@"not important");
+    
+    
+}
+
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
 	UIViewController *oldViewController = [self.childViewControllers objectAtIndex:_page];

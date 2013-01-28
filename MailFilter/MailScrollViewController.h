@@ -21,7 +21,8 @@
 
 
 - (IBAction)changePage:(id)sender;
-- (IBAction)replyLater:(id)sender;
+- (IBAction)markEmailReplyLater:(id)sender;
+- (IBAction)markEmailNotImportant:(id)sender;
 
 
 @end
