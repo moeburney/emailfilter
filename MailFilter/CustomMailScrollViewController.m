@@ -7,6 +7,7 @@
 //
 
 #import "CustomMailScrollViewController.h"
+#import "Message.h"
 
 @interface CustomMailScrollViewController ()
 
@@ -30,23 +31,25 @@
     [self addChildViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ViewTemp2"]];
     
 }
-/*
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+
+- (IBAction)showFilterPage:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"showFilterPage"]) {
-        [[segue destinationViewController] setDelegate:self];
-    }
+    Message *msg = [self.messages objectAtIndex:self.pageControl.currentPage - 1];
+    NSString *subj = msg.subject;
+    NSString *from = msg.senderEmailAddress;
     
-}
- */
-/*
-- (IBAction)showFilterPage:(id)sender;
-{
-   // [self performSegueWithIdentifier:@"showFilterPage" sender:Nil];
-    NSLog(@"fix delegate here");
+    //save current sender email and message subject in NSUserDefaults
+    //then it can be accessed by FilterScreenViewController, then erased
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:subj forKey:[NSString stringWithFormat:@"temp_subj"]];
+    [defaults setObject:from forKey:[NSString stringWithFormat:@"temp_from"]];
+    [NSUserDefaults resetStandardUserDefaults];
     
+    //Use segue to load new modal Filter Screen view controller
+    [self performSegueWithIdentifier:@"showFilterScreen" sender:Nil];
+
 }
- */
+
 
 - (void)didReceiveMemoryWarning
 {

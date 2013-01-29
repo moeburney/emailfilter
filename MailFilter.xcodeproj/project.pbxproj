@@ -31,6 +31,7 @@
 		452F096D166330600004CE2A /* CustomMailScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 452F096C1663305F0004CE2A /* CustomMailScrollViewController.m */; };
 		452F0970166562C50004CE2A /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 452F096F166562C50004CE2A /* Message.m */; };
 		452F0973166563480004CE2A /* ImapSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 452F0972166563470004CE2A /* ImapSync.m */; };
+		45C572D016B7114800A0413A /* FilterScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C572CF16B7114800A0413A /* FilterScreenViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,8 @@
 		452F096F166562C50004CE2A /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		452F0971166563470004CE2A /* ImapSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImapSync.h; sourceTree = "<group>"; };
 		452F0972166563470004CE2A /* ImapSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImapSync.m; sourceTree = "<group>"; };
+		45C572CE16B7114700A0413A /* FilterScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterScreenViewController.h; sourceTree = "<group>"; };
+		45C572CF16B7114800A0413A /* FilterScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterScreenViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +180,8 @@
 				452F096C1663305F0004CE2A /* CustomMailScrollViewController.m */,
 				452F0971166563470004CE2A /* ImapSync.h */,
 				452F0972166563470004CE2A /* ImapSync.m */,
+				45C572CE16B7114700A0413A /* FilterScreenViewController.h */,
+				45C572CF16B7114800A0413A /* FilterScreenViewController.m */,
 			);
 			path = MailFilter;
 			sourceTree = "<group>";
@@ -313,6 +318,7 @@
 				452F096D166330600004CE2A /* CustomMailScrollViewController.m in Sources */,
 				452F0970166562C50004CE2A /* Message.m in Sources */,
 				452F0973166563480004CE2A /* ImapSync.m in Sources */,
+				45C572D016B7114800A0413A /* FilterScreenViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

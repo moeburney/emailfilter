@@ -267,14 +267,13 @@
 - (IBAction)markEmailReplyLater:(id)sender {
     //this method should move the current message on display to "Reply Later" folder
     //If no such folder exists, create it
-    
+    //TODO: allow user to use different label than "Reply Later"
 
     int page = self.pageControl.currentPage;
     
-    NSLog(@"reply later");
-    NSLog(@"%i", self.messages.count);
-
-    NSLog(@"%i", [[self.messages objectAtIndex:page] uid]);
+   // NSLog(@"reply later");
+   // NSLog(@"%i", self.messages.count);
+   // NSLog(@"%i", [[self.messages objectAtIndex:page] uid]);
     
     //get the singleton dataManager object
     ImapSync *dataManager = [ImapSync sharedDataManager];
@@ -282,19 +281,40 @@
     //get inbox folder object
     CTCoreFolder *inbox = [dataManager getInbox];
     
-    //TODO: create the "Reply Later" folder if it does not exist, using the dataManager object
+    //create the "Reply Later" folder if it does not exist, using the dataManager object
+    [dataManager createFolder:@"Reply Later"];
+
     
-    //move the UID
-    //todo: examine why page - 1 is getting the right message, instead of just uid
+    //TODO: add some explanation for this
     [inbox moveMessageWithUID:[[self.messages objectAtIndex:page - 1] uid] toPath:@"Reply Later"];
+    
+    //TODO: send some kind of message to user that this email has been moved to reply later
     
 }
 
 
 - (IBAction)markEmailNotImportant:(id)sender {
     
-    NSLog(@"not important");
-
+    //this method should move the current message on display to "Not Important" folder
+    //If no such folder exists, create it
+    //TODO: allow user to use different label than "Not Important"
+    
+    int page = self.pageControl.currentPage;
+    
+    //get the singleton dataManager object
+    ImapSync *dataManager = [ImapSync sharedDataManager];
+    
+    //get inbox folder object
+    CTCoreFolder *inbox = [dataManager getInbox];
+    
+    //create the "Reply Later" folder if it does not exist, using the dataManager object
+    [dataManager createFolder:@"Not Important"];
+    
+    
+    //TODO: add some explanation for this
+    [inbox moveMessageWithUID:[[self.messages objectAtIndex:page - 1] uid] toPath:@"Not Important"];
+    
+    //TODO: send some kind of message to user that this email has been moved to reply later
     
     
 }
@@ -595,5 +615,7 @@
 	// Set the boolean used when scrolls originate from the UIPageControl. See scrollViewDidScroll: above.
     _pageControlUsed = YES;
 }
+
+
 
 @end

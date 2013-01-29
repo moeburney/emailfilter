@@ -7,10 +7,10 @@
 //
 
 #import "MailScrollViewController.h"
+#import "FilterScreenViewController.h"
 
 @interface CustomMailScrollViewController : MailScrollViewController
 
-//- (IBAction)showFilterPage:(id)sender;
-
+- (IBAction)showFilterPage:(id)sender;
 
 @end

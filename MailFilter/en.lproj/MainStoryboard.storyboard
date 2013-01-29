@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Filter Screen View Controller-->
         <scene sceneID="S8L-8t-hBZ">
             <objects>
-                <viewController id="g2N-YV-NHk" sceneMemberID="viewController">
+                <viewController id="g2N-YV-NHk" customClass="FilterScreenViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="F2s-9P-d8r">
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -38,46 +38,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6H3-zr-68q">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="52" id="HEr-DB-MyO"/>
-                                    <constraint firstAttribute="width" constant="200" id="Mwh-4q-ooc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Label One">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v0k-26-jHd">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="52" id="SjV-0P-IPU"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Label Two">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Qh-4s-A6A">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="52" id="hun-OD-bcb"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Label Three">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="When Any Email Arrives" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVh-Nw-jrs">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="V75-FV-hF3"/>
@@ -87,12 +47,12 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Edit Existing Filters" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PTD-GK-ZKh">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="(Or Edit Existing Folders)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PTD-GK-ZKh">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="224" id="ngy-7J-tLu"/>
+                                    <constraint firstAttribute="width" constant="224" id="e80-jr-4Ua"/>
                                     <constraint firstAttribute="height" constant="52" id="voS-14-4GB"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -128,40 +88,60 @@
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sch-0B-YgR"/>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Box-TT-0Cl"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="75" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ht0-Eu-2Ov">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="138" id="wph-eS-l10"/>
+                                    <constraint firstAttribute="width" constant="246" id="yTI-1Y-CuB"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="Cell" rowHeight="45" id="ine-7K-RPD" userLabel="Table View Cell">
+                                        <rect key="frame" x="0.0" y="22" width="246" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="246" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="g2N-YV-NHk" id="tXN-RO-dd8"/>
+                                    <outlet property="delegate" destination="g2N-YV-NHk" id="j5r-k1-W2d"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="PTD-GK-ZKh" firstAttribute="leading" secondItem="F2s-9P-d8r" secondAttribute="leading" constant="168" id="0Tp-VA-Rg2"/>
                             <constraint firstItem="PVh-Nw-jrs" firstAttribute="leading" secondItem="VTs-Go-IH5" secondAttribute="leading" type="default" id="0nv-ef-hFI"/>
-                            <constraint firstAttribute="bottom" secondItem="PTD-GK-ZKh" secondAttribute="bottom" constant="13" id="1Et-vd-Y7k"/>
-                            <constraint firstItem="OKX-bu-t05" firstAttribute="leading" secondItem="F2s-9P-d8r" secondAttribute="leading" constant="92" id="1ug-dz-6Bq"/>
                             <constraint firstItem="3NU-v6-CoS" firstAttribute="baseline" secondItem="OKX-bu-t05" secondAttribute="baseline" type="default" id="2Ad-Vo-qRb"/>
-                            <constraint firstItem="v0k-26-jHd" firstAttribute="top" secondItem="6H3-zr-68q" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="428-x2-tZj"/>
-                            <constraint firstItem="1Qh-4s-A6A" firstAttribute="leading" secondItem="v0k-26-jHd" secondAttribute="leading" type="default" id="7ci-Xz-gCG"/>
-                            <constraint firstItem="PVh-Nw-jrs" firstAttribute="leading" secondItem="F2s-9P-d8r" secondAttribute="leading" constant="34" id="A6d-p3-zkY"/>
-                            <constraint firstItem="6H3-zr-68q" firstAttribute="leading" secondItem="VTs-Go-IH5" secondAttribute="leading" type="default" id="Flv-Wd-sCK"/>
+                            <constraint firstItem="ht0-Eu-2Ov" firstAttribute="leading" secondItem="VTs-Go-IH5" secondAttribute="leading" type="default" id="Cjf-Wx-ihQ"/>
+                            <constraint firstItem="3NU-v6-CoS" firstAttribute="leading" secondItem="F2s-9P-d8r" secondAttribute="leading" constant="10" id="D2o-7h-kaL"/>
                             <constraint firstItem="3NU-v6-CoS" firstAttribute="top" secondItem="F2s-9P-d8r" secondAttribute="top" constant="9" id="GCW-3T-tTz"/>
+                            <constraint firstItem="OKX-bu-t05" firstAttribute="leading" secondItem="F2s-9P-d8r" secondAttribute="leading" constant="92" id="Hg2-bp-CBb"/>
                             <constraint firstItem="VTs-Go-IH5" firstAttribute="top" secondItem="F2s-9P-d8r" secondAttribute="top" constant="190" id="J9F-YV-B8K"/>
                             <constraint firstItem="Sch-0B-YgR" firstAttribute="top" secondItem="F2s-9P-d8r" secondAttribute="top" constant="114" id="NrX-az-6vI"/>
                             <constraint firstItem="PVh-Nw-jrs" firstAttribute="top" secondItem="3NU-v6-CoS" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="ScL-uz-7nd"/>
-                            <constraint firstItem="1Qh-4s-A6A" firstAttribute="top" secondItem="v0k-26-jHd" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="UWV-EL-0Mw"/>
                             <constraint firstItem="1s0-cW-41r" firstAttribute="leading" secondItem="Sam-ol-rbw" secondAttribute="leading" type="default" id="VRR-XC-qdj"/>
                             <constraint firstItem="Box-TT-0Cl" firstAttribute="centerY" secondItem="1s0-cW-41r" secondAttribute="centerY" type="default" id="YRu-zT-vIo"/>
                             <constraint firstItem="Sch-0B-YgR" firstAttribute="leading" secondItem="3NU-v6-CoS" secondAttribute="leading" type="default" id="Yif-ix-lcE"/>
-                            <constraint firstItem="1Qh-4s-A6A" firstAttribute="trailing" secondItem="v0k-26-jHd" secondAttribute="trailing" type="default" id="h7d-0c-pwk"/>
-                            <constraint firstItem="Sch-0B-YgR" firstAttribute="leading" secondItem="F2s-9P-d8r" secondAttribute="leading" constant="10" id="iJ6-Kf-xg5"/>
-                            <constraint firstItem="v0k-26-jHd" firstAttribute="trailing" secondItem="6H3-zr-68q" secondAttribute="trailing" type="default" id="mmk-jO-WRr"/>
-                            <constraint firstItem="PTD-GK-ZKh" firstAttribute="leading" secondItem="F2s-9P-d8r" secondAttribute="leading" constant="27" id="nAr-RV-eVG"/>
+                            <constraint firstItem="ht0-Eu-2Ov" firstAttribute="leading" secondItem="AsH-eK-H7h" secondAttribute="leading" type="default" id="b4W-Sd-AQd"/>
+                            <constraint firstItem="PVh-Nw-jrs" firstAttribute="leading" secondItem="F2s-9P-d8r" secondAttribute="leading" constant="34" id="ivc-R1-6a3"/>
+                            <constraint firstAttribute="bottom" secondItem="AsH-eK-H7h" secondAttribute="bottom" constant="25" id="jhP-TB-7FI"/>
+                            <constraint firstAttribute="bottom" secondItem="PTD-GK-ZKh" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="m0p-kN-7tc"/>
+                            <constraint firstItem="ht0-Eu-2Ov" firstAttribute="top" secondItem="F2s-9P-d8r" secondAttribute="top" constant="224" id="nL0-oj-48a"/>
                             <constraint firstItem="Sch-0B-YgR" firstAttribute="centerY" secondItem="Sam-ol-rbw" secondAttribute="centerY" type="default" id="o8e-qe-wXh"/>
-                            <constraint firstAttribute="trailing" secondItem="AsH-eK-H7h" secondAttribute="trailing" constant="12" id="pne-Vk-8MM"/>
                             <constraint firstItem="Box-TT-0Cl" firstAttribute="top" secondItem="F2s-9P-d8r" secondAttribute="top" constant="148" id="poD-Rd-Nat"/>
-                            <constraint firstItem="v0k-26-jHd" firstAttribute="leading" secondItem="6H3-zr-68q" secondAttribute="leading" type="default" id="rPe-HX-kaU"/>
-                            <constraint firstItem="AsH-eK-H7h" firstAttribute="bottom" secondItem="PTD-GK-ZKh" secondAttribute="bottom" type="default" id="siP-lc-uC8"/>
-                            <constraint firstItem="6H3-zr-68q" firstAttribute="top" secondItem="VTs-Go-IH5" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="t8P-0J-Ocx"/>
-                            <constraint firstItem="Sam-ol-rbw" firstAttribute="leading" secondItem="F2s-9P-d8r" secondAttribute="leading" constant="101" id="tKF-ni-CMT"/>
                             <constraint firstItem="Box-TT-0Cl" firstAttribute="leading" secondItem="Sch-0B-YgR" secondAttribute="leading" type="default" id="tev-Wk-KUj"/>
                             <constraint firstItem="1s0-cW-41r" firstAttribute="trailing" secondItem="Sam-ol-rbw" secondAttribute="trailing" type="default" id="wS0-wH-t3i"/>
+                            <constraint firstItem="Sam-ol-rbw" firstAttribute="leading" secondItem="F2s-9P-d8r" secondAttribute="leading" constant="101" id="yG1-XY-hBL"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="sender" destination="Sam-ol-rbw" id="Qqi-vx-LE2"/>
+                        <outlet property="subject" destination="1s0-cW-41r" id="FDo-Df-ix8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lcs-qf-e9r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -201,7 +181,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="showMessage:" destination="2" eventType="touchDown" id="qg3-G0-JXp"/>
+                                    <action selector="showMessage:" destination="2" eventType="touchUpInside" id="PbV-eN-pRE"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -266,7 +246,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="g2N-YV-NHk" kind="modal" id="nuE-06-R6Z"/>
+                                    <action selector="showFilterPage:" destination="arA-F2-Wzf" eventType="touchUpInside" id="cse-GO-6EV"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -280,6 +260,9 @@
                             <constraint firstItem="KFU-qR-CDs" firstAttribute="top" secondItem="4m4-NM-xjE" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="tbN-fz-CET"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="g2N-YV-NHk" kind="modal" identifier="showFilterScreen" id="VEX-FM-rti"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yWB-Qp-rfq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -486,6 +469,48 @@
             <point key="canvasLocation" x="-2404" y="559"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="CustomMailScrollViewController" superclassName="MailScrollViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomMailScrollViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="showFilterPage:"/>
+            </relationships>
+        </class>
+        <class className="FilterScreenViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FilterScreenViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="sender" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="subject" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="MailFilterFlipsideViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MailFilterFlipsideViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="portField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="serverField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="usernameField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="MailFilterMainViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MailFilterMainViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="showMessage:"/>
+            </relationships>
+        </class>
+        <class className="MailScrollViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MailScrollViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="changePage:"/>
+                <relationship kind="action" name="markEmailNotImportant:"/>
+                <relationship kind="action" name="markEmailReplyLater:"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

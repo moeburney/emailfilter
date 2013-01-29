@@ -76,6 +76,12 @@
 
 }
 
+-(NSSet *)getFolderNames
+{
+    NSSet *folders = [self.account allFolders];
+    return folders;
+}
+
 -(NSMutableArray *)getMessagesFirstBatch
 {
     // Returns an array of 5 Email Messages
