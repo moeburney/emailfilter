@@ -85,6 +85,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="saveFilterRule:" destination="g2N-YV-NHk" eventType="touchUpInside" id="O6D-BQ-OvG"/>
+                                </connections>
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sch-0B-YgR"/>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Box-TT-0Cl"/>
@@ -140,7 +143,9 @@
                     </view>
                     <connections>
                         <outlet property="sender" destination="Sam-ol-rbw" id="Qqi-vx-LE2"/>
+                        <outlet property="senderSwitch" destination="Sch-0B-YgR" id="yNh-JB-nhA"/>
                         <outlet property="subject" destination="1s0-cW-41r" id="FDo-Df-ix8"/>
+                        <outlet property="subjectSwitch" destination="Box-TT-0Cl" id="TEr-II-yVR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lcs-qf-e9r" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -479,8 +484,11 @@
         <class className="FilterScreenViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FilterScreenViewController.h"/>
             <relationships>
+                <relationship kind="action" name="saveFilterRule:"/>
                 <relationship kind="outlet" name="sender" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="senderSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="subject" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="subjectSwitch" candidateClass="UISwitch"/>
             </relationships>
         </class>
         <class className="MailFilterFlipsideViewController" superclassName="UIViewController">

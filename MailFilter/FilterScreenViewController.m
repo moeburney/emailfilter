@@ -49,6 +49,21 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)saveFilterRule:(id)sender
+{
+    //This method is called when the "save" button is clicked
+    
+    if(self.senderSwitch.on)
+    {
+        NSLog(@"sender switch on");
+    }
+    
+    if(self.subjectSwitch.on)
+    {
+        NSLog(@"subject switch on");
+    }
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

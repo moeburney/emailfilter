@@ -15,8 +15,9 @@
 @property (nonatomic,retain) NSArray *folders;
 @property (nonatomic,retain) IBOutlet UILabel *sender;
 @property (nonatomic,retain) IBOutlet UILabel *subject;
-@property (nonatomic,retain) IBOutlet UISwitch *sender_on;
-@property (nonatomic,retain) IBOutlet UISwitch *subject_on;
+@property (nonatomic,retain) IBOutlet UISwitch *senderSwitch;
+@property (nonatomic,retain) IBOutlet UISwitch *subjectSwitch;
+
 
 - (IBAction)saveFilterRule:(id)sender;
 
