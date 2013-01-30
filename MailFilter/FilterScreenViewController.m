@@ -56,12 +56,12 @@
     
     if(self.senderSwitch.on)
     {
-        NSLog(@"sender switch on");
+       // NSLog(@"sender switch on");
     }
     
     if(self.subjectSwitch.on)
     {
-        NSLog(@"subject switch on");
+        // NSLog(@"subject switch on");
     }
     
     if (self.selectedFolder != nil)
@@ -71,25 +71,61 @@
         //are automatically filtered into selected folder
         
         //TODO: this sqlite code should go in a model file
-        sqlite3_stmt *stmt=nil;
+        //also needs some validation checks
+       // sqlite3_stmt *stmt=nil;
         sqlite3 *cruddb;
         
         //insert
-        const char *sql = "INSERT INTO filter_rules(sender, subject, folder) VALUES(?,?,?)";
+        //const char *sql = "INSERT INTO filter_rules(sender, subject, folder) VALUES(?,?,?)";
+        NSString *sql = nil;
+        sql = [NSString stringWithFormat:@"INSERT INTO filter_rules(sender, subject, folder) Values('%@','%@', '%@')", @"a", @"b", @"c"];
+        
+        sqlite3_stmt *compiledStatement;
         
         //Open db
-        NSString *cruddatabase = [[NSBundle mainBundle] pathForResource:@"banklist"
+        NSString *cruddatabase = [[NSBundle mainBundle] pathForResource:@"filters"
                                                              ofType:@"sqlite3"];
+        
+        if (sqlite3_open([cruddatabase UTF8String], &cruddb) != SQLITE_OK)
+        {
+            NSLog(@"Failed to open database!");
+        }
 
-        sqlite3_open([cruddatabase UTF8String], &cruddb);
-        sqlite3_prepare_v2(cruddb, sql, 1, &stmt, NULL);
-        sqlite3_bind_text(stmt, 1, [txt UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_int(stmt, 2, integer);
-        sqlite3_bind_double(stmt, 3, dbl);
+        int result = sqlite3_prepare_v2(cruddb, [sql UTF8String], -1, &compiledStatement, NULL);
+        if (result != SQLITE_OK)
+        {
+            NSLog(@"Problem with first prepare statement");
+            NSLog(@"Prepare-error #%i: %s", result, sqlite3_errmsg(cruddb));
+
+        }
+        /*
+        sqlite3_bind_text(stmt, 1, [@"l" UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(stmt, 2, [@"a" UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(stmt, 3, [@"o" UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_step(stmt);
         sqlite3_finalize(stmt);
-        sqlite3_close(cruddb);
+        */
+        sqlite3_finalize(compiledStatement);
         
+
+        //NSLog(@"insertion complete");
+        
+        NSString *sql1 = nil;
+        sql1 = [NSString stringWithFormat:@"SELECT id, sender, subject, folder FROM filter_rules"];
+        sqlite3_stmt *compiledStatement1;
+        
+        if(sqlite3_prepare(cruddb, [sql1 UTF8String], -1, &compiledStatement1, NULL) != SQLITE_OK)
+        {
+            NSLog(@"Problem with second prepare statement");
+        }
+        
+        
+        while (sqlite3_step(compiledStatement1)==SQLITE_ROW) {
+            NSString *sndr = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement1,1)];
+            NSLog(@"%@", sndr);
+        }
+        
+        sqlite3_close(cruddb);
 
     }
 
