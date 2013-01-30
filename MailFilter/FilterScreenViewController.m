@@ -8,6 +8,7 @@
 
 #import "FilterScreenViewController.h"
 #import "ImapSync.h"
+#import <sqlite3.h>
 
 
 @interface FilterScreenViewController ()
@@ -62,6 +63,36 @@
     {
         NSLog(@"subject switch on");
     }
+    
+    if (self.selectedFolder != nil)
+    {
+        //create new rule sender and/or subject (if their switches are on)
+        //such that all messages that contain subject and/or sender
+        //are automatically filtered into selected folder
+        
+        //TODO: this sqlite code should go in a model file
+        sqlite3_stmt *stmt=nil;
+        sqlite3 *cruddb;
+        
+        //insert
+        const char *sql = "INSERT INTO filter_rules(sender, subject, folder) VALUES(?,?,?)";
+        
+        //Open db
+        NSString *cruddatabase = [[NSBundle mainBundle] pathForResource:@"banklist"
+                                                             ofType:@"sqlite3"];
+
+        sqlite3_open([cruddatabase UTF8String], &cruddb);
+        sqlite3_prepare_v2(cruddb, sql, 1, &stmt, NULL);
+        sqlite3_bind_text(stmt, 1, [txt UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_int(stmt, 2, integer);
+        sqlite3_bind_double(stmt, 3, dbl);
+        sqlite3_step(stmt);
+        sqlite3_finalize(stmt);
+        sqlite3_close(cruddb);
+        
+
+    }
+
 }
 
 #pragma mark - Table view data source
@@ -110,13 +141,13 @@
  */
 
 
-
+/*
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
 
 }
-
+*/
 
 
 
@@ -140,13 +171,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+    if (selectedCell != nil)
+    {
+        self.selectedFolder = selectedCell.textLabel.text;
+    }
+    
 }
 
 

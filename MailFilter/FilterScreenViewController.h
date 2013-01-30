@@ -13,6 +13,7 @@
 }
 
 @property (nonatomic,retain) NSArray *folders;
+@property (nonatomic,retain) NSString *selectedFolder;
 @property (nonatomic,retain) IBOutlet UILabel *sender;
 @property (nonatomic,retain) IBOutlet UILabel *subject;
 @property (nonatomic,retain) IBOutlet UISwitch *senderSwitch;
