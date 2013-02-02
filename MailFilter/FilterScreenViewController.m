@@ -72,25 +72,24 @@
         
         //TODO: this sqlite code should go in a model file
         //also needs some validation checks
-       // sqlite3_stmt *stmt=nil;
+
         sqlite3 *cruddb;
         
         //insert
         //const char *sql = "INSERT INTO filter_rules(sender, subject, folder) VALUES(?,?,?)";
         NSString *sql = nil;
-        sql = [NSString stringWithFormat:@"INSERT INTO filter_rules(sender, subject, folder) Values('%@','%@', '%@')", @"a", @"b", @"c"];
-        
+        sql = [NSString stringWithFormat:@"INSERT INTO filter_rules(sender, subject, folder) Values('%@','%@','%@')", @"a", @"b", @"c"];
         sqlite3_stmt *compiledStatement;
         
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString *path = [documentsDirectory stringByAppendingPathComponent:@"sqlite.db"];
+        NSString *path = [documentsDirectory stringByAppendingPathComponent:@"filters.sqlite3"];
         
         NSFileManager *fileManager = [NSFileManager defaultManager];
         
         if (![fileManager fileExistsAtPath: path])
         {
-            NSString *bundle =  [[ NSBundle mainBundle] pathForResource:@"sqlite" ofType:@"db"];
+            NSString *bundle =  [[NSBundle mainBundle] pathForResource:@"filters" ofType:@"sqlite3"];
             [fileManager copyItemAtPath:bundle toPath:path error:nil];
         }
 
@@ -117,6 +116,7 @@
         sqlite3_step(stmt);
         sqlite3_finalize(stmt);
         */
+        sqlite3_step(compiledStatement);
         sqlite3_finalize(compiledStatement);
         sqlite3_close(cruddb);
 
