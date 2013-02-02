@@ -82,7 +82,19 @@
         
         sqlite3_stmt *compiledStatement;
         
-        //Open db
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *path = [documentsDirectory stringByAppendingPathComponent:@"sqlite.db"];
+        
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        
+        if (![fileManager fileExistsAtPath: path])
+        {
+            NSString *bundle =  [[ NSBundle mainBundle] pathForResource:@"sqlite" ofType:@"db"];
+            [fileManager copyItemAtPath:bundle toPath:path error:nil];
+        }
+
+        
         NSString *cruddatabase = [[NSBundle mainBundle] pathForResource:@"filters"
                                                              ofType:@"sqlite3"];
         
@@ -106,26 +118,58 @@
         sqlite3_finalize(stmt);
         */
         sqlite3_finalize(compiledStatement);
-        
+        sqlite3_close(cruddb);
+
 
         //NSLog(@"insertion complete");
-        
+        sqlite3 *cruddb1;
+
         NSString *sql1 = nil;
-        sql1 = [NSString stringWithFormat:@"SELECT id, sender, subject, folder FROM filter_rules"];
+        sql1 = [NSString stringWithFormat:@"SELECT sender, subject, folder FROM filter_rules WHERE sender='a'"];
         sqlite3_stmt *compiledStatement1;
         
-        if(sqlite3_prepare(cruddb, [sql1 UTF8String], -1, &compiledStatement1, NULL) != SQLITE_OK)
+        //Open db
+        NSString *cruddatabase1 = [[NSBundle mainBundle] pathForResource:@"filters"
+                                                                 ofType:@"sqlite3"];
+        
+        if (sqlite3_open([cruddatabase1 UTF8String], &cruddb1) != SQLITE_OK)
         {
-            NSLog(@"Problem with second prepare statement");
+            NSLog(@"Failed to open database 2nd time!");
+        }
+
+        
+        int result1 = sqlite3_prepare_v2(cruddb1, [sql UTF8String], -1, &compiledStatement1, NULL);
+        if (result1 != SQLITE_OK)
+        {
+            NSLog(@"Problem with first prepare statement 2nd time");
+            NSLog(@"Prepare-error #%i: %s", result1, sqlite3_errmsg(cruddb));
+            
+        }
+
+        
+        if(sqlite3_prepare(cruddb1, [sql1 UTF8String], -1, &compiledStatement1, NULL) != SQLITE_OK)
+        {
+            NSLog(@"Problem with second prepare statement 2nd time");
+        }
+        else
+        {
+            int stepResult = sqlite3_step(compiledStatement1);
+            NSLog(@"step result integer is ");
+            NSLog(@"%i", stepResult);
+            if(stepResult == SQLITE_ROW)
+            {
+                char *sender = (char *)sqlite3_column_text(compiledStatement1, 0);
+                NSString *sndr= [[NSString alloc]initWithUTF8String:sender];
+                NSLog(@"sndr is ");
+                NSLog(@"%@", sndr);
+            }
         }
         
-        
-        while (sqlite3_step(compiledStatement1)==SQLITE_ROW) {
-            NSString *sndr = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement1,1)];
-            NSLog(@"%@", sndr);
-        }
-        
-        sqlite3_close(cruddb);
+  
+
+        sqlite3_finalize(compiledStatement1);
+
+        sqlite3_close(cruddb1);
 
     }
 
