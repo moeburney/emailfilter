@@ -83,6 +83,8 @@
         //then call the function to insert the records.
         //this saves the filter rules
         [dbManager insertFilterRuleInDatabase:sndr :subj :fldr];
+        
+        [dbManager selectFilterRuleFromDatabase];
        
     }
 

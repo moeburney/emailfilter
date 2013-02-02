@@ -26,15 +26,8 @@
         NSString *bundle =  [[NSBundle mainBundle] pathForResource:@"filters" ofType:@"sqlite3"];
         [self.fileManager copyItemAtPath:bundle toPath:self.path error:nil];
     }
-    
-    
     self.filtersDatabase = [[NSBundle mainBundle] pathForResource:@"filters"
                                                              ofType:@"sqlite3"];
-    
-    if (sqlite3_open([self.filtersDatabase UTF8String], &_db) != SQLITE_OK)
-    {
-        NSLog(@"Failed to open database!");
-    }
     
     return self;
 }
@@ -50,8 +43,25 @@
 	return dbManager;
 }
 
+-(void)openDatabase
+{
+    if (sqlite3_open([self.filtersDatabase UTF8String], &_db) != SQLITE_OK)
+    {
+        NSLog(@"Failed to open database!");
+    }
+}
+
+-(void)closeDatabase
+{
+    if (sqlite3_close(self.db) != SQLITE_OK)
+    {
+        NSLog(@"Failed to close database");
+    }
+}
+
 -(void)insertFilterRuleInDatabase:(NSString *)senderEmailAddress:(NSString *)subjectTitle:(NSString *)folderName
 {
+    [self openDatabase];
     NSString *query = nil;
     query = [NSString stringWithFormat:@"INSERT INTO filter_rules(sender, subject, folder) Values('%@','%@','%@')", senderEmailAddress, subjectTitle, folderName];
     sqlite3_stmt *compiledStatement;
@@ -65,24 +75,21 @@
     
     sqlite3_step(compiledStatement);
     sqlite3_finalize(compiledStatement);
-    sqlite3_close(self.db);
+    [self closeDatabase];
 }
+
 -(void)selectFilterRuleFromDatabase
 {
+    [self openDatabase];
     NSString *query = nil;
     query = [NSString stringWithFormat:@"SELECT sender, subject, folder FROM filter_rules WHERE sender != 'q' AND sender !='a'"];
     sqlite3_stmt *compiledStatement1;
     
-    int result1 = sqlite3_prepare_v2(self.db, [query UTF8String], -1, &compiledStatement1, NULL);
-    if (result1 != SQLITE_OK)
+    int result = sqlite3_prepare_v2(self.db, [query UTF8String], -1, &compiledStatement1, NULL);
+    if (result != SQLITE_OK)
     {
-        NSLog(@"Problem with first prepare statement 2nd time");
-        NSLog(@"Prepare-error #%i: %s", result1, sqlite3_errmsg(self.db));
-    }
-    
-    if(sqlite3_prepare(self.db, [query UTF8String], -1, &compiledStatement1, NULL) != SQLITE_OK)
-    {
-        NSLog(@"Problem with second prepare statement 2nd time");
+        NSLog(@"Problem with first prepare statement for selectFilterRuleFromDatabase");
+        NSLog(@"Prepare-error #%i: %s", result, sqlite3_errmsg(self.db));
     }
     else
     {
@@ -122,7 +129,7 @@
     }
     
     sqlite3_finalize(compiledStatement1);
-    sqlite3_close(self.db);
+    [self closeDatabase];
 }
 
 
