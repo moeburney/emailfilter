@@ -33,7 +33,6 @@
 		452F0973166563480004CE2A /* ImapSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 452F0972166563470004CE2A /* ImapSync.m */; };
 		45C572D016B7114800A0413A /* FilterScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C572CF16B7114800A0413A /* FilterScreenViewController.m */; };
 		45C5730816B9C47400A0413A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45C5730716B9C47400A0413A /* libsqlite3.dylib */; };
-		45C5730A16B9C4C200A0413A /* filters.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 45C5730916B9C4C100A0413A /* filters.sqlite3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,7 +105,6 @@
 		45C572CE16B7114700A0413A /* FilterScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterScreenViewController.h; sourceTree = "<group>"; };
 		45C572CF16B7114800A0413A /* FilterScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterScreenViewController.m; sourceTree = "<group>"; };
 		45C5730716B9C47400A0413A /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		45C5730916B9C4C100A0413A /* filters.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = filters.sqlite3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,7 +131,6 @@
 		452F08FD1661B6E50004CE2A = {
 			isa = PBXGroup;
 			children = (
-				45C5730916B9C4C100A0413A /* filters.sqlite3 */,
 				45C5730716B9C47400A0413A /* libsqlite3.dylib */,
 				452F095C1661B7890004CE2A /* CFNetwork.framework */,
 				452F095A1661B7840004CE2A /* libiconv.dylib */,
@@ -300,7 +297,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45C5730A16B9C4C200A0413A /* filters.sqlite3 in Resources */,
 				452F09171661B6E50004CE2A /* InfoPlist.strings in Resources */,
 				452F091F1661B6E50004CE2A /* Default.png in Resources */,
 				452F09211661B6E50004CE2A /* Default@2x.png in Resources */,

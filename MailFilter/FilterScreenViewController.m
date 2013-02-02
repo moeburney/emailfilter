@@ -28,7 +28,7 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    [super viewDidLoad];                      
 	// Do any additional setup after loading the view.
     ImapSync *dataManager = [ImapSync sharedDataManager];
     self.folders = [[dataManager getFolderNames] allObjects];
@@ -37,10 +37,10 @@
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     NSString *temp_subj = [prefs stringForKey:@"temp_subj"];
     NSString *temp_from = [prefs stringForKey:@"temp_from"];
-    NSLog(@"%@", temp_from);
-    NSLog(@"%@", temp_subj);
-    self.sender.text = [@"from " stringByAppendingString:temp_from]; 
-    self.subject.text = [@"With the subject " stringByAppendingString:temp_from];
+   // NSLog(@"%@", temp_from);
+   // NSLog(@"%@", temp_subj);
+    self.sender.text = [@"from " stringByAppendingString:temp_from];
+    self.subject.text = [@"With the subject " stringByAppendingString:temp_subj];
 
 }
 
@@ -53,19 +53,26 @@
 - (IBAction)saveFilterRule:(id)sender
 {
     //This method is called when the "save" button is clicked
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    NSString *sndr = nil;
+    NSString *subj = nil;
+    NSString *fldr = nil;
     
     if(self.senderSwitch.on)
     {
        // NSLog(@"sender switch on");
+        sndr = [prefs stringForKey:@"temp_from"];
+
     }
     
     if(self.subjectSwitch.on)
     {
-        // NSLog(@"subject switch on");
+        subj = [prefs stringForKey:@"temp_subj"];
     }
     
     if (self.selectedFolder != nil)
     {
+        fldr = self.selectedFolder;
         //create new rule sender and/or subject (if their switches are on)
         //such that all messages that contain subject and/or sender
         //are automatically filtered into selected folder
@@ -78,7 +85,8 @@
         //insert
         //const char *sql = "INSERT INTO filter_rules(sender, subject, folder) VALUES(?,?,?)";
         NSString *sql = nil;
-        sql = [NSString stringWithFormat:@"INSERT INTO filter_rules(sender, subject, folder) Values('%@','%@','%@')", @"a", @"b", @"c"];
+        //sql = [NSString stringWithFormat:@"DELETE FROM filter_rules WHERE 1"];
+        sql = [NSString stringWithFormat:@"INSERT INTO filter_rules(sender, subject, folder) Values('%@','%@','%@')", sndr, subj, fldr];
         sqlite3_stmt *compiledStatement;
         
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -121,11 +129,10 @@
         sqlite3_close(cruddb);
 
 
-        //NSLog(@"insertion complete");
         sqlite3 *cruddb1;
 
         NSString *sql1 = nil;
-        sql1 = [NSString stringWithFormat:@"SELECT sender, subject, folder FROM filter_rules WHERE sender='a'"];
+        sql1 = [NSString stringWithFormat:@"SELECT sender, subject, folder FROM filter_rules WHERE sender != 'q' AND sender !='a'"];
         sqlite3_stmt *compiledStatement1;
         
         //Open db
@@ -153,16 +160,47 @@
         }
         else
         {
-            int stepResult = sqlite3_step(compiledStatement1);
-            NSLog(@"step result integer is ");
-            NSLog(@"%i", stepResult);
-            if(stepResult == SQLITE_ROW)
+            //int stepResult = sqlite3_step(compiledStatement1);
+           // NSLog(@"step result integer is ");
+           // NSLog(@"%i", stepResult);
+            //if(stepResult == SQLITE_ROW)
+            
+            if(sqlite3_step(compiledStatement1))
             {
                 char *sender = (char *)sqlite3_column_text(compiledStatement1, 0);
-                NSString *sndr= [[NSString alloc]initWithUTF8String:sender];
-                NSLog(@"sndr is ");
-                NSLog(@"%@", sndr);
+                char *subject = (char *)sqlite3_column_text(compiledStatement1, 1);
+                char *folder = (char *)sqlite3_column_text(compiledStatement1, 2);
+
+                NSString *sndr1;
+                NSString *fldr1;
+                NSString *subj1;
+                
+                if (sender == nil) {
+                    sndr1 = nil;
+                } else {
+                    sndr1 = [NSString stringWithUTF8String: sender];
+                }
+            
+                
+                if (subject == nil) {
+                    subj1 = nil;
+                } else {
+                    subj1 = [NSString stringWithUTF8String: subject];
+                }
+                
+                if (folder == nil) {
+                    fldr1 = nil;
+                } else {
+                    fldr1 = [NSString stringWithUTF8String: folder];
+                }
+
+                
+                NSLog(@"%@", sndr1);
+                NSLog(@"%@", fldr1);
+                NSLog(@"%@", subj1);
+
             }
+             
         }
         
   
@@ -171,6 +209,8 @@
 
         sqlite3_close(cruddb1);
 
+      
+        
     }
 
 }
