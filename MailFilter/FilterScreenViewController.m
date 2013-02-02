@@ -8,7 +8,7 @@
 
 #import "FilterScreenViewController.h"
 #import "ImapSync.h"
-#import <sqlite3.h>
+#import "DatabaseModel.h"
 
 
 @interface FilterScreenViewController ()
@@ -60,7 +60,6 @@
     
     if(self.senderSwitch.on)
     {
-       // NSLog(@"sender switch on");
         sndr = [prefs stringForKey:@"temp_from"];
 
     }
@@ -70,150 +69,25 @@
         subj = [prefs stringForKey:@"temp_subj"];
     }
     
+    
+    //create new rule sender and/or subject (if their switches are on)
+    //such that all messages that contain subject and/or sender
+    //are automatically filtered into selected folder
     if (self.selectedFolder != nil)
     {
         fldr = self.selectedFolder;
-        //create new rule sender and/or subject (if their switches are on)
-        //such that all messages that contain subject and/or sender
-        //are automatically filtered into selected folder
+
+        //get the dbManager singleton which comes from DatabaseModel
+        DatabaseModel *dbManager = [DatabaseModel sharedDataManager];
         
-        //TODO: this sqlite code should go in a model file
-        //also needs some validation checks
-
-        sqlite3 *cruddb;
-        
-        //insert
-        //const char *sql = "INSERT INTO filter_rules(sender, subject, folder) VALUES(?,?,?)";
-        NSString *sql = nil;
-        //sql = [NSString stringWithFormat:@"DELETE FROM filter_rules WHERE 1"];
-        sql = [NSString stringWithFormat:@"INSERT INTO filter_rules(sender, subject, folder) Values('%@','%@','%@')", sndr, subj, fldr];
-        sqlite3_stmt *compiledStatement;
-        
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString *path = [documentsDirectory stringByAppendingPathComponent:@"filters.sqlite3"];
-        
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        
-        if (![fileManager fileExistsAtPath: path])
-        {
-            NSString *bundle =  [[NSBundle mainBundle] pathForResource:@"filters" ofType:@"sqlite3"];
-            [fileManager copyItemAtPath:bundle toPath:path error:nil];
-        }
-
-        
-        NSString *cruddatabase = [[NSBundle mainBundle] pathForResource:@"filters"
-                                                             ofType:@"sqlite3"];
-        
-        if (sqlite3_open([cruddatabase UTF8String], &cruddb) != SQLITE_OK)
-        {
-            NSLog(@"Failed to open database!");
-        }
-
-        int result = sqlite3_prepare_v2(cruddb, [sql UTF8String], -1, &compiledStatement, NULL);
-        if (result != SQLITE_OK)
-        {
-            NSLog(@"Problem with first prepare statement");
-            NSLog(@"Prepare-error #%i: %s", result, sqlite3_errmsg(cruddb));
-
-        }
-        /*
-        sqlite3_bind_text(stmt, 1, [@"l" UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_text(stmt, 2, [@"a" UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_text(stmt, 3, [@"o" UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_step(stmt);
-        sqlite3_finalize(stmt);
-        */
-        sqlite3_step(compiledStatement);
-        sqlite3_finalize(compiledStatement);
-        sqlite3_close(cruddb);
-
-
-        sqlite3 *cruddb1;
-
-        NSString *sql1 = nil;
-        sql1 = [NSString stringWithFormat:@"SELECT sender, subject, folder FROM filter_rules WHERE sender != 'q' AND sender !='a'"];
-        sqlite3_stmt *compiledStatement1;
-        
-        //Open db
-        NSString *cruddatabase1 = [[NSBundle mainBundle] pathForResource:@"filters"
-                                                                 ofType:@"sqlite3"];
-        
-        if (sqlite3_open([cruddatabase1 UTF8String], &cruddb1) != SQLITE_OK)
-        {
-            NSLog(@"Failed to open database 2nd time!");
-        }
-
-        
-        int result1 = sqlite3_prepare_v2(cruddb1, [sql UTF8String], -1, &compiledStatement1, NULL);
-        if (result1 != SQLITE_OK)
-        {
-            NSLog(@"Problem with first prepare statement 2nd time");
-            NSLog(@"Prepare-error #%i: %s", result1, sqlite3_errmsg(cruddb));
-            
-        }
-
-        
-        if(sqlite3_prepare(cruddb1, [sql1 UTF8String], -1, &compiledStatement1, NULL) != SQLITE_OK)
-        {
-            NSLog(@"Problem with second prepare statement 2nd time");
-        }
-        else
-        {
-            //int stepResult = sqlite3_step(compiledStatement1);
-           // NSLog(@"step result integer is ");
-           // NSLog(@"%i", stepResult);
-            //if(stepResult == SQLITE_ROW)
-            
-            if(sqlite3_step(compiledStatement1))
-            {
-                char *sender = (char *)sqlite3_column_text(compiledStatement1, 0);
-                char *subject = (char *)sqlite3_column_text(compiledStatement1, 1);
-                char *folder = (char *)sqlite3_column_text(compiledStatement1, 2);
-
-                NSString *sndr1;
-                NSString *fldr1;
-                NSString *subj1;
-                
-                if (sender == nil) {
-                    sndr1 = nil;
-                } else {
-                    sndr1 = [NSString stringWithUTF8String: sender];
-                }
-            
-                
-                if (subject == nil) {
-                    subj1 = nil;
-                } else {
-                    subj1 = [NSString stringWithUTF8String: subject];
-                }
-                
-                if (folder == nil) {
-                    fldr1 = nil;
-                } else {
-                    fldr1 = [NSString stringWithUTF8String: folder];
-                }
-
-                
-                NSLog(@"%@", sndr1);
-                NSLog(@"%@", fldr1);
-                NSLog(@"%@", subj1);
-
-            }
-             
-        }
-        
-  
-
-        sqlite3_finalize(compiledStatement1);
-
-        sqlite3_close(cruddb1);
-
-      
-        
+        //then call the function to insert the records.
+        //this saves the filter rules
+        [dbManager insertFilterRuleInDatabase:sndr :subj :fldr];
+       
     }
 
 }
+
 
 #pragma mark - Table view data source
 

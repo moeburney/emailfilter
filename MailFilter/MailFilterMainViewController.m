@@ -48,6 +48,10 @@
 }
 
 - (IBAction)showMessage:(id)sender {
+    //TODO: Here we should present the # of emails to be filtered and ask the user if he wants to
+    //run the filtering process
+    //THEN ask him if he would like to view the remaining n emails (where n is number of emails after filter process)
+    
     UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"MailFilter"
                                                       message:@"You have new emails. Would you like to review them now?"
                                                      delegate:self
@@ -83,5 +87,6 @@
     }
 
 }
+
 
 @end

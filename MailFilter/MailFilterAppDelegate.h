@@ -11,6 +11,5 @@
 @interface MailFilterAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-- (void)createEditableCopyOfDatabaseIfNeeded;
 
 @end

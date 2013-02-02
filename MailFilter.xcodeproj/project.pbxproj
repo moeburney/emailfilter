@@ -33,6 +33,7 @@
 		452F0973166563480004CE2A /* ImapSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 452F0972166563470004CE2A /* ImapSync.m */; };
 		45C572D016B7114800A0413A /* FilterScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C572CF16B7114800A0413A /* FilterScreenViewController.m */; };
 		45C5730816B9C47400A0413A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45C5730716B9C47400A0413A /* libsqlite3.dylib */; };
+		45C5731616BDA6F500A0413A /* DatabaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C5731516BDA6F500A0413A /* DatabaseModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,8 @@
 		45C572CE16B7114700A0413A /* FilterScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterScreenViewController.h; sourceTree = "<group>"; };
 		45C572CF16B7114800A0413A /* FilterScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterScreenViewController.m; sourceTree = "<group>"; };
 		45C5730716B9C47400A0413A /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		45C5731416BDA6F500A0413A /* DatabaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseModel.h; sourceTree = "<group>"; };
+		45C5731516BDA6F500A0413A /* DatabaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +189,8 @@
 				452F0972166563470004CE2A /* ImapSync.m */,
 				45C572CE16B7114700A0413A /* FilterScreenViewController.h */,
 				45C572CF16B7114800A0413A /* FilterScreenViewController.m */,
+				45C5731416BDA6F500A0413A /* DatabaseModel.h */,
+				45C5731516BDA6F500A0413A /* DatabaseModel.m */,
 			);
 			path = MailFilter;
 			sourceTree = "<group>";
@@ -323,6 +328,7 @@
 				452F0970166562C50004CE2A /* Message.m in Sources */,
 				452F0973166563480004CE2A /* ImapSync.m in Sources */,
 				45C572D016B7114800A0413A /* FilterScreenViewController.m in Sources */,
+				45C5731616BDA6F500A0413A /* DatabaseModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
