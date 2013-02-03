@@ -29,7 +29,8 @@
                                         authType:IMAP_AUTH_TYPE_PLAIN
                                            login:[Settings username:self.accountNum]
                                         password:[Settings password:self.accountNum]];
-     
+    
+    //code to connect to my local server, delete this before releasing production version
     /*
     BOOL success = [self.account connectToServer:@"localhost"
                                             port:10143
@@ -123,16 +124,8 @@
 -(NSMutableArray *)getMessages:(NSUInteger)start:(NSUInteger)finish
 {
     // this is nearly the same method as getMessages, but with start and finish arguments
-    // is there a better way to call this (to avoid repeat code)?
+    // TODO: is there a better way to call this (to avoid repeat code)?
     
-    //TODO: add a way to filter out messages that  belong to "I will reply later" array
-    //using sequence number
-    //but make sure *messages array still pulls out 5 messages after filter is applied
-    //one solution is to loop through sequence numbers, check if sequence number is in array,
-    //then if it is in array, skip to next sequence number, and if not, then add it to *messages;
-    //repeat this process until 5 messages have been added
-
-
     CTCoreFolder *inbox = [self.account folderWithPath:@"INBOX"];
     NSArray *messages = [inbox messagesFromSequenceNumber:start to:finish withFetchAttributes:CTFetchAttrEnvelope];
     NSMutableArray *message_array = [[NSMutableArray alloc] init];
@@ -157,6 +150,15 @@
     
     
     return message_array;
+}
+
+-(void)filterMessagesAccordingToRules
+{
+    //TODO: write the code to get the dbManager singleton
+    //then get an array of rules from the db table filter_rules
+    NSArray *rules = [dbManager getRulesFromDb];
+    
+    //TODO: run a map-filter function on the rules array with the inbox messages array
 }
 
 
