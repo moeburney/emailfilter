@@ -133,8 +133,9 @@
     [self closeDatabase];
 }
 
--(NSDictionary *)getRules
+-(NSMutableArray *)getRules
 {
+    NSMutableArray *rules = [[NSMutableArray alloc] initWithObjects: nil];
     NSDictionary *rulesDict;
     [self openDatabase];
     NSString *query = nil;
@@ -184,6 +185,7 @@
                                        @"subj", subj1,
                                        @"fldr", fldr1,
                                        nil];
+            [rules addObject:rulesDict];
 
 
         }
@@ -194,6 +196,6 @@
     [self closeDatabase];
     
 
-    return rulesDict;
+    return rules;
 }
 @end
