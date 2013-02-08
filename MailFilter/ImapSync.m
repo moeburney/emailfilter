@@ -9,11 +9,11 @@
 #import "ImapSync.h"
 #import "Settings.h"
 #import "Message.h"
+#import "DatabaseModel.h"
 #import <MailCore/MailCore.h>
 
-@implementation ImapSync
-@synthesize account, accountNum;
 
+@implementation ImapSync
 
 - (ImapSync *)initWithImapServer
 {
@@ -152,14 +152,48 @@
     return message_array;
 }
 
--(void)filterMessagesAccordingToRules
+-(void)filterMessage:(NSUInteger)sequenceNumber:(NSString *)folderName
 {
-    //TODO: write the code to get the dbManager singleton
-    //then get an array of rules from the db table filter_rules
-    NSArray *rules = [dbManager getRulesFromDb];
+    CTCoreFolder *inbox = [self.account folderWithPath:@"INBOX"];
     
-    //TODO: run a map-filter function on the rules array with the inbox messages array
+    //TODO: this is fetching a sequence number instead of UID, fix this
+    [inbox moveMessageWithUID:sequenceNumber toPath:folderName];
+
 }
 
+-(void)filterMessagesAccordingToRules
+{
+    DatabaseModel *dbManager = [DatabaseModel sharedDataManager];
 
+    NSMutableArray *inboxMessages = [self getMessages:1 :0];
+    
+    //TODO: getRules needs to return more than one row
+    //TODO: getRules needs to return an array of dicts
+    NSArray *rulesArray = [dbManager getRules];
+    NSDictionary *rules;
+    
+    //for each rule, search the message array for a subj and/or sender match
+    //if a match is found, move it to folder in rule
+    for (int i = 0; i < [rulesArray count]; i++)
+    {
+        rules = [rulesArray objectAtIndex:i];
+        for (int j = 0; j < [inboxMessages count]; j++)
+        {
+            //filter all subject matches to specified folder based on rule            
+            if ([rules objectForKey:@"subj"] == [[inboxMessages objectAtIndex:j] subject])
+            {
+                [self filterMessage:j:[rules objectForKey:@"fldr"]];
+            }
+            
+            //do the same for all sender matches
+            if ([rules objectForKey:@"sndr"] == [[inboxMessages objectAtIndex:j] senderEmailAddress])
+            {
+                [self filterMessage:j:[rules objectForKey:@"fldr"]];
+            }
+
+        }
+    }
+}
+                 
+                 
 @end

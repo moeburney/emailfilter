@@ -8,6 +8,7 @@
 
 #import "DatabaseModel.h"
 #import <sqlite3.h>
+#import "Message.h"
 
 @implementation DatabaseModel
 
@@ -132,5 +133,67 @@
     [self closeDatabase];
 }
 
+-(NSDictionary *)getRules
+{
+    NSDictionary *rulesDict;
+    [self openDatabase];
+    NSString *query = nil;
+    query = [NSString stringWithFormat:@"SELECT sender, subject, folder FROM filter_rules"];
+    sqlite3_stmt *compiledStatement2;
+    
+    int result = sqlite3_prepare_v2(self.db, [query UTF8String], -1, &compiledStatement2, NULL);
+    if (result != SQLITE_OK)
+    {
+        NSLog(@"Problem with first prepare statement for selectFilterRuleFromDatabase");
+        NSLog(@"Prepare-error #%i: %s", result, sqlite3_errmsg(self.db));
+    }
+    else
+    {
+        while(sqlite3_step(compiledStatement2))
+        {
+            NSLog(@"looping through row in getRules");
+            char *sender = (char *)sqlite3_column_text(compiledStatement2, 0);
+            char *subject = (char *)sqlite3_column_text(compiledStatement2, 1);
+            char *folder = (char *)sqlite3_column_text(compiledStatement2, 2);
+            
+            NSString *sndr1;
+            NSString *fldr1;
+            NSString *subj1;
+            
+                       
+            if (sender == nil) {
+                sndr1 = nil;
+            } else {
+                sndr1 = [NSString stringWithUTF8String: sender];
+            }
+            
+            if (subject == nil) {
+                subj1 = nil;
+            } else {
+                subj1 = [NSString stringWithUTF8String: subject];
+            }
+            
+            if (folder == nil) {
+                fldr1 = nil;
+            } else {
+                fldr1 = [NSString stringWithUTF8String: folder];
+            }
+        
+            rulesDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                       @"sndr", sndr1,
+                                       @"subj", subj1,
+                                       @"fldr", fldr1,
+                                       nil];
 
+
+        }
+        
+    }
+    
+    sqlite3_finalize(compiledStatement2);
+    [self closeDatabase];
+    
+
+    return rulesDict;
+}
 @end

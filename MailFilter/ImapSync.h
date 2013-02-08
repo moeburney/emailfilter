@@ -29,5 +29,7 @@
 -(NSSet *)getFolderNames;
 -(NSMutableArray *)getMessagesFirstBatch;
 -(NSMutableArray *)getMessages:(NSUInteger)start:(NSUInteger)finish;
+-(void)filterMessagesAccordingToRules;
+-(void)filterMessage:(NSUInteger)sequenceNumber:(NSString *)folderName;
 
 @end

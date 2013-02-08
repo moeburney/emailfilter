@@ -22,5 +22,7 @@
 +(DatabaseModel *)sharedDataManager;
 -(void)insertFilterRuleInDatabase:(NSString *)senderEmailAddress:(NSString *)subjectTitle:(NSString *)folderName;
 -(void)selectFilterRuleFromDatabase;
+-(NSDictionary *)getRules;
+
 
 @end
