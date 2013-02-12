@@ -53,7 +53,7 @@
     //THEN ask him if he would like to view the remaining n emails (where n is number of emails after filter process)
     
     UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"MailFilter"
-                                                      message:@"You have new emails. Would you like to review them now?"
+                                                      message:@"Your inbox will be filtered and then all remaining emails can be reviewed. Would you like to continue?"
                                                      delegate:self
                                             cancelButtonTitle:@"Cancel"
                                             otherButtonTitles:@"OK", nil];

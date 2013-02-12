@@ -152,48 +152,56 @@
     return message_array;
 }
 
--(void)filterMessage:(NSUInteger)sequenceNumber:(NSString *)folderName
+-(void)filterMessage:(NSUInteger)uid:(CTCoreFolder *)inbox:(NSString *)folderName
 {
-    CTCoreFolder *inbox = [self.account folderWithPath:@"INBOX"];
+    if ((NSNull *)folderName == [NSNull null])
+    {
+        NSLog(@"null folder");
+    }
+    else
+    {
+        BOOL success = [inbox moveMessageWithUID:uid toPath:@"Reply Later"];
     
-    //TODO: this is fetching a sequence number instead of UID, fix this
-    [inbox moveMessageWithUID:sequenceNumber toPath:folderName];
-
+        if (!success)
+        {
+            NSLog(@"can't move message");
+            NSLog(@"%@",self.account.lastError);
+        }
+    }
+        
 }
 
 -(void)filterMessagesAccordingToRules
 {
     DatabaseModel *dbManager = [DatabaseModel sharedDataManager];
 
-    NSMutableArray *inboxMessages = [self getMessages:1 :0];
+    //NSMutableArray *inboxMessages = [self getMessages:1 :0];
+    CTCoreFolder *inbox = [self.account folderWithPath:@"INBOX"];
+    NSArray *inboxMessages = [inbox messagesFromSequenceNumber:1 to:0 withFetchAttributes:CTFetchAttrEnvelope];
     
-    //TODO: getRules needs to return more than one row
-    //TODO: getRules needs to return an array of dicts
-    NSArray *rulesArray = [dbManager getRules];
+    NSArray *rulesFromDatabaseArray = [dbManager getRules];
     NSDictionary *rules;
     
     //for each rule, search the message array for a subj and/or sender match
     //if a match is found, move it to folder in rule
-    for (int i = 0; i < [rulesArray count]; i++)
+    for (int i = 0; i < [rulesFromDatabaseArray count]; i++)
     {
-        rules = [rulesArray objectAtIndex:i];
+        rules = [rulesFromDatabaseArray objectAtIndex:i];
         for (int j = 0; j < [inboxMessages count]; j++)
         {
-            //filter all subject matches to specified folder based on rule            
+            //filter all subject matches to specified folder based on rule
             if ([rules objectForKey:@"subj"] == [[inboxMessages objectAtIndex:j] subject])
             {
-                [self filterMessage:j:[rules objectForKey:@"fldr"]];
+                [self filterMessage:[[inboxMessages objectAtIndex:j] uid]:inbox:[rules objectForKey:@"fldr"]];
             }
             
             //do the same for all sender matches
-            if ([rules objectForKey:@"sndr"] == [[inboxMessages objectAtIndex:j] senderEmailAddress])
+            if ([rules objectForKey:@"sndr"] == [[inboxMessages objectAtIndex:j] sender])
             {
-                [self filterMessage:j:[rules objectForKey:@"fldr"]];
+                [self filterMessage:[[inboxMessages objectAtIndex:j] uid]:inbox:[rules objectForKey:@"fldr"]];
             }
 
         }
     }
 }
-                 
-                 
 @end

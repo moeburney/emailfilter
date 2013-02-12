@@ -122,8 +122,13 @@
     //and it is decremented when the user goes backward on the first view controller
     self.messageBatchIndex = 0;
     
-    //connect to the server and get the first batch of messages (i.e. the first 5 messages)
+    //connect to the server
     ImapSync *dataManager = [ImapSync sharedDataManager];
+    
+    //filter messages
+    [dataManager filterMessagesAccordingToRules];
+    
+    //get the first batch of messages (i.e. the first 5 messages)
     self.messages = [dataManager getMessagesFirstBatch];
     self.messageBatches = [[NSMutableArray alloc] init];
     [self.messageBatches addObject:self.messages];

@@ -30,6 +30,6 @@
 -(NSMutableArray *)getMessagesFirstBatch;
 -(NSMutableArray *)getMessages:(NSUInteger)start:(NSUInteger)finish;
 -(void)filterMessagesAccordingToRules;
--(void)filterMessage:(NSUInteger)sequenceNumber:(NSString *)folderName;
+-(void)filterMessage:(NSUInteger)uid:(CTCoreFolder *)inbox:(NSString *)folderName;
 
 @end

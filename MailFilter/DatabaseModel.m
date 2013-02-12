@@ -150,32 +150,31 @@
     }
     else
     {
-        while(sqlite3_step(compiledStatement2))
+        while(sqlite3_step(compiledStatement2) == SQLITE_ROW)
         {
             NSLog(@"looping through row in getRules");
             char *sender = (char *)sqlite3_column_text(compiledStatement2, 0);
             char *subject = (char *)sqlite3_column_text(compiledStatement2, 1);
             char *folder = (char *)sqlite3_column_text(compiledStatement2, 2);
             
-            NSString *sndr1;
-            NSString *fldr1;
-            NSString *subj1;
-            
+            id sndr1;
+            id fldr1;
+            id subj1;
                        
             if (sender == nil) {
-                sndr1 = nil;
+                sndr1 = [NSNull null];
             } else {
                 sndr1 = [NSString stringWithUTF8String: sender];
             }
             
             if (subject == nil) {
-                subj1 = nil;
+                subj1 = [NSNull null];
             } else {
                 subj1 = [NSString stringWithUTF8String: subject];
             }
             
             if (folder == nil) {
-                fldr1 = nil;
+                fldr1 = [NSNull null];
             } else {
                 fldr1 = [NSString stringWithUTF8String: folder];
             }
