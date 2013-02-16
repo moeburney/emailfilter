@@ -18,6 +18,8 @@
 @property (nonatomic) NSUInteger messageBatchIndex;
 @property (nonatomic) UIActivityIndicatorView *activityIndicator1;
 @property (nonatomic) UIActivityIndicatorView *activityIndicator2;
+@property (nonatomic) BOOL loadedOnce;
+
 
 
 - (IBAction)changePage:(id)sender;

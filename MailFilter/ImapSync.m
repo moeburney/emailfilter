@@ -15,22 +15,42 @@
 
 @implementation ImapSync
 
-- (ImapSync *)initWithImapServer
+- (id)initWithImapServer
 {
     NSLog(@"trying to connect...");
 
     self = [super init];
     self.accountNum = 1;
     self.account = [[CTCoreAccount alloc] init];
-        
+    
+    /*
     BOOL success = [self.account connectToServer:[Settings server:self.accountNum]
                                             port:[Settings serverPort:self.accountNum]
                                   connectionType:CONNECTION_TYPE_TLS
                                         authType:IMAP_AUTH_TYPE_PLAIN
                                            login:[Settings username:self.accountNum]
                                         password:[Settings password:self.accountNum]];
+     */
+    
+    
+    BOOL success = [self.account connectToServer:@"imap.gmail.com"
+                                            port:993
+                                  connectionType:CONNECTION_TYPE_TLS
+                                        authType:IMAP_AUTH_TYPE_PLAIN
+                                           login:@"moe@trackpattern.com"
+                                        password:@"bl1tz5590"];
+     
+    /*
+    BOOL success = [self.account connectToServer:@"imap.gmail.com"
+                                            port:993
+                                  connectionType:CONNECTION_TYPE_TLS
+                                        authType:IMAP_AUTH_TYPE_PLAIN
+                                           login:@"moe@dev70.com"
+                                        password:@"bl1tz5590"];
+     */
     
     //code to connect to my local server, delete this before releasing production version
+    
     /*
     BOOL success = [self.account connectToServer:@"localhost"
                                             port:10143
@@ -74,6 +94,31 @@
 {
     CTCoreFolder *inbox = [self.account folderWithPath:@"INBOX"];
     return inbox;
+
+}
+
+-(NSUInteger *)getInboxCount
+{
+    /*
+    NSUInteger *total = NULL;
+    if ([[self getInbox] totalMessageCount:total])
+    {
+        return total;
+    }
+    else
+    {
+        return -1;
+    }
+    */
+    NSUInteger total = 0;
+    if ([[self getInbox] totalMessageCount:&total])
+    {
+        return total;
+    }
+    else
+    {
+        return -1;
+    }
 
 }
 
@@ -154,18 +199,26 @@
 
 -(void)filterMessage:(NSUInteger)uid:(CTCoreFolder *)inbox:(NSString *)folderName
 {
+    NSLog(@"inside filterMessage");
+
     if ((NSNull *)folderName == [NSNull null])
     {
         NSLog(@"null folder");
     }
     else
     {
-        BOOL success = [inbox moveMessageWithUID:uid toPath:@"Reply Later"];
+        //TODO: check if folder of string folderName exists
+        //BOOL success = [inbox moveMessageWithUID:uid toPath:folderName];
+        BOOL success = [inbox moveMessageWithUID:uid toPath:folderName];
     
         if (!success)
         {
             NSLog(@"can't move message");
             NSLog(@"%@",self.account.lastError);
+        }
+        else
+        {
+            NSLog(@"success!");
         }
     }
         
@@ -186,17 +239,40 @@
     //if a match is found, move it to folder in rule
     for (int i = 0; i < [rulesFromDatabaseArray count]; i++)
     {
+        //NSLog(@"looping first");
         rules = [rulesFromDatabaseArray objectAtIndex:i];
+       // for (id key in rules)
+        //{
+          //  NSLog(@"key: %@, value: %@", key, [rules objectForKey:key]);
+        //}
+       // NSLog(@"%@", [rules objectForKey:@"subj"]);
+
         for (int j = 0; j < [inboxMessages count]; j++)
         {
-            //filter all subject matches to specified folder based on rule
-            if ([rules objectForKey:@"subj"] == [[inboxMessages objectAtIndex:j] subject])
+            //NSLog(@"looping second");
+
+            //tests for debugging
+            /*
+            if ([[rules objectForKey:@"subj"] length] > 0)
             {
+                NSLog(@"rules element is");
+                NSLog(@"%@", [rules objectForKey:@"subj"]);
+                
+                NSLog(@"inboxMessages element is");
+                NSLog(@"%@", [[inboxMessages objectAtIndex:j] subject]);
+            }
+             */
+            
+            //filter all subject matches to specified folder based on rule
+            if ([[rules objectForKey:@"subj"] isEqualToString:[[inboxMessages objectAtIndex:j] subject]])
+            {
+                NSLog(@"found a match");
+
                 [self filterMessage:[[inboxMessages objectAtIndex:j] uid]:inbox:[rules objectForKey:@"fldr"]];
             }
             
             //do the same for all sender matches
-            if ([rules objectForKey:@"sndr"] == [[inboxMessages objectAtIndex:j] sender])
+            if ([[rules objectForKey:@"sndr"] isEqualToString:[[inboxMessages objectAtIndex:j] subject]])
             {
                 [self filterMessage:[[inboxMessages objectAtIndex:j] uid]:inbox:[rules objectForKey:@"fldr"]];
             }

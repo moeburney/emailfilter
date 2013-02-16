@@ -31,6 +31,7 @@
 		452F096D166330600004CE2A /* CustomMailScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 452F096C1663305F0004CE2A /* CustomMailScrollViewController.m */; };
 		452F0970166562C50004CE2A /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 452F096F166562C50004CE2A /* Message.m */; };
 		452F0973166563480004CE2A /* ImapSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 452F0972166563470004CE2A /* ImapSync.m */; };
+		4575D2A916CBE706006A9AE4 /* filters.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 4575D2A816CBE706006A9AE4 /* filters.sqlite3 */; };
 		45C572D016B7114800A0413A /* FilterScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C572CF16B7114800A0413A /* FilterScreenViewController.m */; };
 		45C5730816B9C47400A0413A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45C5730716B9C47400A0413A /* libsqlite3.dylib */; };
 		45C5731616BDA6F500A0413A /* DatabaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C5731516BDA6F500A0413A /* DatabaseModel.m */; };
@@ -103,6 +104,7 @@
 		452F096F166562C50004CE2A /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		452F0971166563470004CE2A /* ImapSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImapSync.h; sourceTree = "<group>"; };
 		452F0972166563470004CE2A /* ImapSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImapSync.m; sourceTree = "<group>"; };
+		4575D2A816CBE706006A9AE4 /* filters.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; name = filters.sqlite3; path = ../filters.sqlite3; sourceTree = "<group>"; };
 		45C572CE16B7114700A0413A /* FilterScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterScreenViewController.h; sourceTree = "<group>"; };
 		45C572CF16B7114800A0413A /* FilterScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterScreenViewController.m; sourceTree = "<group>"; };
 		45C5730716B9C47400A0413A /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -134,6 +136,7 @@
 		452F08FD1661B6E50004CE2A = {
 			isa = PBXGroup;
 			children = (
+				4575D2A716CBE6E8006A9AE4 /* Resources */,
 				45C5730716B9C47400A0413A /* libsqlite3.dylib */,
 				452F095C1661B7890004CE2A /* CFNetwork.framework */,
 				452F095A1661B7840004CE2A /* libiconv.dylib */,
@@ -168,6 +171,7 @@
 		452F09121661B6E50004CE2A /* MailFilter */ = {
 			isa = PBXGroup;
 			children = (
+				4575D2AA16CD355F006A9AE4 /* Resources */,
 				452E4561166D925F000C7180 /* Roboto-Medium.ttf */,
 				452F09661662A5B60004CE2A /* Settings.m */,
 				452F09651662A59E0004CE2A /* Settings.h */,
@@ -217,6 +221,21 @@
 				452F094E1661B6F80004CE2A /* Tests.octest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		4575D2A716CBE6E8006A9AE4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		4575D2AA16CD355F006A9AE4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4575D2A816CBE706006A9AE4 /* filters.sqlite3 */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,6 +327,7 @@
 				452F09231661B6E50004CE2A /* Default-568h@2x.png in Resources */,
 				452F09261661B6E50004CE2A /* MainStoryboard.storyboard in Resources */,
 				452E4562166D925F000C7180 /* Roboto-Medium.ttf in Resources */,
+				4575D2A916CBE706006A9AE4 /* filters.sqlite3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,7 +404,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -405,7 +425,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

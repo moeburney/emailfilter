@@ -20,8 +20,10 @@
 
 
 +(DatabaseModel *)sharedDataManager;
+-(id)initWithDatabaseConnection;
 -(void)insertFilterRuleInDatabase:(NSString *)senderEmailAddress:(NSString *)subjectTitle:(NSString *)folderName;
 -(void)selectFilterRuleFromDatabase;
+-(void)clearDatabase;
 -(NSMutableArray *)getRules;
 
 

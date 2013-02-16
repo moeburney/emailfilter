@@ -21,6 +21,8 @@
 
 
 - (IBAction)saveFilterRule:(id)sender;
+- (IBAction)dismissFilterPage:(id)sender;
+
 
 
 @end

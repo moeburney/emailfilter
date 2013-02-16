@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
         <!--Filter Screen View Controller-->
@@ -27,7 +27,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="arA-F2-Wzf" kind="modal" id="n1U-D0-euT"/>
+                                    <action selector="dismissFilterPage:" destination="g2N-YV-NHk" eventType="touchUpInside" id="heS-EY-ID2"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Move to Folder..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTs-Go-IH5">
@@ -173,28 +173,10 @@
                                     <segue destination="6" kind="modal" identifier="showAlternate" modalTransitionStyle="flipHorizontal" id="11"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mmT-vF-CKJ">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="199" id="EMf-4w-A53"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Check Mail">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="showMessage:" destination="2" eventType="touchUpInside" id="PbV-eN-pRE"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="mmT-vF-CKJ" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="Ahw-jg-wPb"/>
                             <constraint firstAttribute="trailing" secondItem="10" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="XfI-yR-eaw"/>
-                            <constraint firstAttribute="bottom" secondItem="mmT-vF-CKJ" secondAttribute="bottom" constant="80" id="lal-Ss-PZI"/>
                             <constraint firstAttribute="bottom" secondItem="10" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="oz5-Ii-PBH"/>
                         </constraints>
                     </view>
@@ -484,6 +466,7 @@
         <class className="FilterScreenViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FilterScreenViewController.h"/>
             <relationships>
+                <relationship kind="action" name="dismissFilterPage:"/>
                 <relationship kind="action" name="saveFilterRule:"/>
                 <relationship kind="outlet" name="sender" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="senderSwitch" candidateClass="UISwitch"/>
@@ -524,7 +507,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="n1U-D0-euT"/>
-    </inferredMetricsTieBreakers>
 </document>

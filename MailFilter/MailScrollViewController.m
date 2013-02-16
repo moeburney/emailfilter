@@ -32,6 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+        
 	// Do any additional setup after loading the view, typically from a nib.
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 150)];
     
@@ -97,62 +98,68 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
     
+    [super viewWillAppear:animated];
+    
+    if (!self.loadedOnce)
+    {
+        NSLog(@"running viewWillAppear");
+        self.loadedOnce = YES;
+        for (NSUInteger i =0; i < [self.childViewControllers count]; i++) {
+            [self loadScrollViewWithPage:i];
+        }
 
-	for (NSUInteger i =0; i < [self.childViewControllers count]; i++) {
-		[self loadScrollViewWithPage:i];
-	}
+        
+        self.pageControl.currentPage = 0;
+        _page = 0;
+        [self.pageControl setNumberOfPages:[self.childViewControllers count]];
+        
+        UIViewController *viewController = [self.childViewControllers objectAtIndex:self.pageControl.currentPage];
+        if (viewController.view.superview != nil) {
+            [viewController viewWillAppear:animated];
+        }
+        
+        self.scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * [self.childViewControllers count], scrollView.frame.size.height);
+        
+        //messageBatchIndex is the position index that tells us which message array (i.e. batch of 5 messages)
+        //to use in order to populate the view controllers.
+        //this position is incremented when the user goes forward on the fifth view controller
+        //and it is decremented when the user goes backward on the first view controller
+        self.messageBatchIndex = 0;
+        
+        //connect to the server
+        ImapSync *dataManager = [ImapSync sharedDataManager];
+        
+        //filter messages
+        //TODO: add a MBProgressHUD loading screen dialog or activity indicator
+        [dataManager filterMessagesAccordingToRules];
+        
+        //get the first batch of messages (i.e. the first 5 messages)
+        self.messages = [dataManager getMessagesFirstBatch];
+        self.messageBatches = [[NSMutableArray alloc] init];
+        [self.messageBatches addObject:self.messages];
 
-    
-	self.pageControl.currentPage = 0;
-	_page = 0;
-	[self.pageControl setNumberOfPages:[self.childViewControllers count]];
-    
-	UIViewController *viewController = [self.childViewControllers objectAtIndex:self.pageControl.currentPage];
-	if (viewController.view.superview != nil) {
-		[viewController viewWillAppear:animated];
-	}
-    
-	self.scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * [self.childViewControllers count], scrollView.frame.size.height);
-    
-    //messageBatchIndex is the position index that tells us which message array (i.e. batch of 5 messages)
-    //to use in order to populate the view controllers.
-    //this position is incremented when the user goes forward on the fifth view controller
-    //and it is decremented when the user goes backward on the first view controller
-    self.messageBatchIndex = 0;
-    
-    //connect to the server
-    ImapSync *dataManager = [ImapSync sharedDataManager];
-    
-    //filter messages
-    [dataManager filterMessagesAccordingToRules];
-    
-    //get the first batch of messages (i.e. the first 5 messages)
-    self.messages = [dataManager getMessagesFirstBatch];
-    self.messageBatches = [[NSMutableArray alloc] init];
-    [self.messageBatches addObject:self.messages];
+        //now populate the view controllers' views with the first 5 messages
+        [self populateChildViewControllers:self.messages];
 
-    //now populate the view controllers' views with the first 5 messages
-    [self populateChildViewControllers:self.messages];
-
-    // create "fake" activity indicators for page 0 and page 6
-    
-    UIViewController *startpagecontroller = [self.childViewControllers objectAtIndex:0];
-    self.activityIndicator1 = [[UIActivityIndicatorView alloc]
-                               initWithFrame:CGRectMake(140, 80, 40, 40)];
-    [self.activityIndicator1 setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
-    [[startpagecontroller view] addSubview:self.activityIndicator1];
-    [startpagecontroller.view bringSubviewToFront:self.activityIndicator1];
-    
-    UIViewController *finalpagecontroller = [self.childViewControllers objectAtIndex:6];
-    self.activityIndicator2 = [[UIActivityIndicatorView alloc]
-                                                  initWithFrame:CGRectMake(140, 80, 40, 40)];
-    [self.activityIndicator2 setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
-    [[finalpagecontroller view] addSubview:self.activityIndicator2];
-    [finalpagecontroller.view bringSubviewToFront:self.activityIndicator2];
-    
-    [self gotoPage:1];
+        // create "fake" activity indicators for page 0 and page 6
+        
+        UIViewController *startpagecontroller = [self.childViewControllers objectAtIndex:0];
+        self.activityIndicator1 = [[UIActivityIndicatorView alloc]
+                                   initWithFrame:CGRectMake(140, 80, 40, 40)];
+        [self.activityIndicator1 setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+        [[startpagecontroller view] addSubview:self.activityIndicator1];
+        [startpagecontroller.view bringSubviewToFront:self.activityIndicator1];
+        
+        UIViewController *finalpagecontroller = [self.childViewControllers objectAtIndex:6];
+        self.activityIndicator2 = [[UIActivityIndicatorView alloc]
+                                                      initWithFrame:CGRectMake(140, 80, 40, 40)];
+        [self.activityIndicator2 setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+        [[finalpagecontroller view] addSubview:self.activityIndicator2];
+        [finalpagecontroller.view bringSubviewToFront:self.activityIndicator2];
+        
+        [self gotoPage:1];
+    }
     
 }
 

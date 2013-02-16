@@ -23,9 +23,11 @@
 
 
 +(ImapSync *) sharedDataManager;
--(ImapSync *) initWithImapServer;
+-(id) initWithImapServer;
+//-(ImapSync *) initWithImapServer;
 -(CTCoreFolder *)createFolder:(NSString *)path;
 -(CTCoreFolder *)getInbox;
+-(NSUInteger *)getInboxCount;
 -(NSSet *)getFolderNames;
 -(NSMutableArray *)getMessagesFirstBatch;
 -(NSMutableArray *)getMessages:(NSUInteger)start:(NSUInteger)finish;

@@ -80,6 +80,9 @@
         //get the dbManager singleton which comes from DatabaseModel
         DatabaseModel *dbManager = [DatabaseModel sharedDataManager];
         
+        //ONLY FOR TESTING: clear the db
+        //[dbManager clearDatabase];
+        
         //then call the function to insert the records.
         //this saves the filter rules
         [dbManager insertFilterRuleInDatabase:sndr :subj :fldr];
@@ -125,6 +128,11 @@
 
     return cell;
     
+}
+
+- (IBAction)dismissFilterPage:(id)sender
+{
+    [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*
